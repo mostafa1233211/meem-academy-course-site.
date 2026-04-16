@@ -2215,6 +2215,22 @@
     }
 
     @media (max-width: 960px) {
+      html,
+      body,
+      a,
+      button,
+      input,
+      textarea,
+      select,
+      * {
+        cursor: auto !important;
+      }
+
+      .cursor,
+      .cursor-ring {
+        display: none !important;
+      }
+
       .topbar {
         padding: 16px 18px;
         border-radius: 24px;
@@ -2287,6 +2303,56 @@
       .session-card:nth-child(5),
       .session-card:nth-child(10) {
         grid-column: span 1;
+      }
+
+      .topbar,
+      .hero-frame,
+      .section-shell,
+      .visual-card,
+      .floating-card,
+      .content-card,
+      .note-card,
+      .register-card,
+      .stat-card,
+      .session-card,
+      .scroll-button,
+      .field input,
+      .field textarea,
+      .orbit-label,
+      .tool-chip,
+      .task,
+      .session-index {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .fade-up,
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale,
+      .panel,
+      .panel.panel-enter,
+      .panel.active.panel-enter .section-header,
+      .panel.active.panel-enter .overview-grid > *,
+      .panel.active.panel-enter .stats-grid > *,
+      .panel.active.panel-enter .notes-grid > *,
+      .panel.active.panel-enter .session-grid > *,
+      .panel.active.panel-enter .register-layout > *,
+      .visual-center,
+      .tool-chip,
+      .visual-card .signal-node {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .fade-up,
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale {
+        opacity: 1;
+        transform: none;
       }
     }
 
@@ -2869,13 +2935,16 @@
   </div>
 
   <script>
-    // Custom cursor - lightweight and performant
-    const cursor = document.querySelector('.cursor');
-    const cursorRing = document.querySelector('.cursor-ring');
-    
+    // Custom cursor - skip setup entirely on touch devices.
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (cursor && cursorRing && !isTouchDevice) {
+
+    if (isTouchDevice) {
+      document.documentElement.classList.add('touch-device');
+    } else {
+      const cursor = document.querySelector('.cursor');
+      const cursorRing = document.querySelector('.cursor-ring');
+
+      if (cursor && cursorRing) {
       let mouseX = 0, mouseY = 0;
       let ringX = 0, ringY = 0;
 
@@ -2898,34 +2967,32 @@
         mouseY = e.clientY;
       });
 
-      // Start animation
-      animateCursor();
+        // Start animation
+        animateCursor();
 
-      // Cursor interaction states
-      const interactiveElements = document.querySelectorAll('a, button, .tab, .session-card, .content-card, .note-card, .stat-card, .register-card, .floating-card, .scroll-button');
-      
-      interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
-      });
-    } else if (cursor && cursorRing) {
-      cursor.style.display = 'none';
-      cursorRing.style.display = 'none';
+        // Cursor interaction states
+        const interactiveElements = document.querySelectorAll('a, button, .tab, .session-card, .content-card, .note-card, .stat-card, .register-card, .floating-card, .scroll-button');
+
+        interactiveElements.forEach(el => {
+          el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
+          el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
+        });
+      }
     }
 
     // Scroll reveal with IntersectionObserver
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-    
+    const revealObserverOptions = isTouchDevice
+      ? { threshold: 0.22, rootMargin: '0px 0px -20px 0px' }
+      : { threshold: 0.14, rootMargin: '0px 0px -40px 0px' };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -60px 0px'
-    });
+    }, revealObserverOptions);
 
     revealElements.forEach(el => observer.observe(el));
 
