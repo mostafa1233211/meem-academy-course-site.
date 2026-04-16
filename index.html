@@ -1066,17 +1066,21 @@
       --bg-soft: #0e0d16;
       --panel: rgba(14, 13, 20, 0.92);
       --panel-strong: rgba(11, 10, 16, 0.97);
-      --card: rgba(237, 232, 245, 0.022);
-      --card-soft: rgba(237, 232, 245, 0.014);
-      --line: rgba(164, 144, 194, 0.10);
-      --line-strong: rgba(164, 144, 194, 0.18);
+      --card: rgba(237, 232, 245, 0.035);
+      --card-soft: rgba(237, 232, 245, 0.02);
+      --card-dark: rgba(10, 8, 15, 0.85);
+      --line: rgba(164, 144, 194, 0.12);
+      --line-strong: rgba(164, 144, 194, 0.22);
+      --line-glass: rgba(255, 255, 255, 0.15);
       --text: #ede8f5;
       --text-soft: #c4bdd4;
       --text-dim: #7a6e92;
       --accent: #8a7ea8;
       --accent-2: #4a4e8f;
-      --glow: rgba(138, 126, 168, 0.08);
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+      --glow: rgba(138, 126, 168, 0.12);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+      --glass-blur: 24px;
+      --glass-border: 1px solid var(--line-glass);
       --radius-xl: 34px;
       --radius-lg: 26px;
       --radius-md: 18px;
@@ -1088,7 +1092,7 @@
     }
 
     html {
-      cursor: auto;
+      cursor: none !important;
     }
 
     body {
@@ -1097,23 +1101,64 @@
         radial-gradient(circle at top right, rgba(138, 126, 168, 0.06), transparent 24%),
         radial-gradient(circle at 12% 0%, rgba(74, 78, 143, 0.09), transparent 28%),
         linear-gradient(180deg, #0b0910 0%, #0e0d15 48%, #0b0910 100%);
-      cursor: auto;
+      cursor: none !important;
     }
 
     a,
     button {
-      cursor: pointer;
+      cursor: none !important;
     }
 
     input,
     textarea,
     select {
-      cursor: text;
+      cursor: none !important;
+    }
+
+    * {
+      cursor: none !important;
     }
 
     .cursor,
     .cursor-ring {
-      display: none !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      mix-blend-mode: difference;
+      will-change: transform;
+    }
+
+    .cursor {
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+      transition: width 150ms ease, height 150ms ease, opacity 150ms ease;
+    }
+
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .cursor-ring.active {
+      width: 56px;
+      height: 56px;
+      border-color: rgba(138, 126, 168, 0.6);
+      background: rgba(138, 126, 168, 0.08);
+    }
+
+    a:hover ~ .cursor,
+    button:hover ~ .cursor,
+    .tab:hover ~ .cursor {
+      width: 12px;
+      height: 12px;
     }
 
     .scroll-controls {
@@ -1126,20 +1171,32 @@
       width: 52px;
       height: 52px;
       border-radius: 18px;
-      border-color: var(--line);
-      background: var(--panel-strong);
+      border: var(--glass-border);
+      background: rgba(14, 13, 20, 0.82);
       color: var(--text-soft);
       font-family: "Cormorant Garamond", serif;
       font-size: 1.35rem;
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition: 
+        transform 180ms ease, 
+        border-color 180ms ease, 
+        background 180ms ease,
+        box-shadow 180ms ease;
     }
 
     .scroll-button:hover,
     .scroll-button:focus-visible {
-      transform: translateY(-1px);
-      border-color: var(--line-strong);
-      background: rgba(16, 15, 22, 0.96);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(16, 15, 24, 0.92);
       color: var(--text);
+      box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .shell {
@@ -1151,10 +1208,13 @@
       top: 18px;
       padding: 18px 24px;
       border-radius: 30px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+      border: var(--glass-border);
+      background: rgba(14, 13, 20, 0.78);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .brand {
@@ -1214,14 +1274,18 @@
         color 220ms ease,
         box-shadow 220ms ease,
         opacity 220ms ease;
+      position: relative;
     }
 
     .tab::before {
+      content: "";
+      position: absolute;
       inset: auto 0 0;
-      height: 1px;
+      height: 2px;
       border-radius: 999px;
-      background: var(--accent);
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
       opacity: 0;
+      transition: opacity 220ms ease;
     }
 
     .tab:hover,
@@ -1255,10 +1319,13 @@
     .section-shell {
       margin-top: var(--space-2);
       border-radius: 28px;
-      border: 1px solid var(--line);
-      background: rgba(10, 9, 9, 0.9);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
+      border: var(--glass-border);
+      background: linear-gradient(135deg, rgba(12, 10, 18, 0.82), rgba(8, 6, 14, 0.88));
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
     }
 
     .hero {
@@ -1364,9 +1431,29 @@
     .register-card,
     .session-card {
       border-radius: 28px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
-      box-shadow: none;
+      border: var(--glass-border);
+      background: linear-gradient(135deg, var(--card-dark), rgba(12, 10, 20, 0.92));
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+
+    .visual-card::before,
+    .floating-card::before,
+    .stats-grid .stat-card::before,
+    .overview-grid .content-card::before,
+    .notes-grid .note-card::before,
+    .register-card::before,
+    .session-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 50%);
+      pointer-events: none;
     }
 
     .visual-card {
@@ -1469,13 +1556,28 @@
 
     .floating-card {
       padding: 22px;
-      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
+      background: linear-gradient(135deg, var(--card-dark), rgba(10, 8, 18, 0.94));
+      border: var(--glass-border);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 
+        0 6px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
       transition:
-        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 220ms ease,
-        background 220ms ease,
-        box-shadow 220ms ease,
-        opacity 220ms ease;
+        transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 240ms ease,
+        background 240ms ease,
+        box-shadow 240ms ease,
+        opacity 240ms ease;
+    }
+
+    .floating-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        0 4px 12px rgba(138, 126, 168, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .floating-card h3,
@@ -1588,7 +1690,13 @@
     .note-card,
     .register-card {
       padding: 22px;
-      background: linear-gradient(180deg, rgba(14, 14, 26, 0.96), rgba(9, 9, 18, 0.94));
+      background: linear-gradient(135deg, var(--card-dark), rgba(11, 9, 18, 0.94));
+      border: var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     .stack-list li {
@@ -1635,12 +1743,28 @@
     .stat-card {
       padding: 22px 20px;
       min-height: 160px;
+      background: linear-gradient(135deg, var(--card-dark), rgba(11, 9, 18, 0.92));
+      border: var(--glass-border);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
       transition:
-        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 220ms ease,
-        background 220ms ease,
-        box-shadow 220ms ease,
-        opacity 220ms ease;
+        transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 240ms ease,
+        background 240ms ease,
+        box-shadow 240ms ease,
+        opacity 240ms ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.32),
+        0 2px 8px rgba(138, 126, 168, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .stat-number {
@@ -1666,27 +1790,37 @@
       flex-direction: column;
       min-height: auto;
       padding: 22px 20px 20px;
+      background: linear-gradient(135deg, var(--card-dark), rgba(10, 8, 17, 0.93));
+      border: var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transition:
-        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 220ms ease,
-        background 220ms ease,
-        box-shadow 220ms ease,
-        opacity 220ms ease;
+        transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 240ms ease,
+        background 240ms ease,
+        box-shadow 240ms ease,
+        opacity 240ms ease;
     }
 
     .session-card:nth-child(-n+3) {
-      background: rgba(237, 232, 245, 0.015);
+      background: linear-gradient(135deg, rgba(14, 12, 22, 0.88), rgba(9, 7, 16, 0.92));
     }
 
     .session-card::after {
-      background: radial-gradient(circle, rgba(138, 126, 168, 0.08), transparent 72%);
+      background: radial-gradient(circle, rgba(138, 126, 168, 0.1), transparent 72%);
     }
 
     .session-card:hover {
-      transform: translateY(-1px);
-      border-color: rgba(138, 126, 168, 0.2);
-      background: linear-gradient(180deg, rgba(138, 126, 168, 0.06), rgba(237, 232, 245, 0.015));
-      box-shadow: none;
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(138, 126, 168, 0.08), rgba(12, 10, 20, 0.92));
+      box-shadow: 
+        0 10px 36px rgba(0, 0, 0, 0.32),
+        0 2px 10px rgba(138, 126, 168, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .content-card,
@@ -2261,9 +2395,70 @@
         transition: none !important;
       }
     }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: 
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: 
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: 
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
   </style>
 </head>
 <body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  
   <div class="scroll-controls" aria-label="Page navigation">
     <button class="scroll-button" id="scroll-up" type="button" aria-label="Scroll to top">↑</button>
     <button class="scroll-button" id="scroll-down" type="button" aria-label="Scroll to bottom">↓</button>
@@ -2292,12 +2487,12 @@
         <header class="hero-frame fade-up delay-1">
           <div class="hero">
             <div class="hero-copy">
-              <div class="eyebrow">Generative AI Course Experience</div>
-              <h1>For creatives who want authorship over AI, not just output.</h1>
-              <p>
+              <div class="eyebrow reveal reveal-left">Generative AI Course Experience</div>
+              <h1 class="reveal reveal-left reveal-delay-1">For creatives who want authorship over AI, not just output.</h1>
+              <p class="reveal reveal-left reveal-delay-2">
                 A 12-week studio for designers, architects, visualizers, and artists building real command of image generation, 3D workflows, motion, automation, and AI-assisted web creation.
               </p>
-              <div class="hero-meta">
+              <div class="hero-meta reveal reveal-left reveal-delay-3">
                 <div class="pill">12 Weeks</div>
                 <div class="pill">36 Guided Hours</div>
                 <div class="pill">Studio Cohort</div>
@@ -2306,11 +2501,11 @@
             </div>
 
             <div class="hero-art">
-              <div class="visual-card fade-up delay-2">
+              <div class="visual-card fade-up delay-2 reveal-scale reveal-delay-1">
                 <div class="editorial-stat"><span>Studio format</span><strong>12 weeks / 36 hours</strong></div>
                 <div class="visual-center">Creative<br />AI Studio</div>
               </div>
-              <div class="floating-card fade-up delay-3">
+              <div class="floating-card fade-up delay-3 reveal-right reveal-delay-2">
                 <div class="mini-kicker">Why this course</div>
                 <h3>Built for creatives who want systems, not shortcuts.</h3>
                 <div class="body-copy">
@@ -2331,7 +2526,7 @@
           </div>
 
           <div class="overview-grid">
-            <article class="content-card">
+            <article class="content-card reveal reveal-left">
               <h3>Audience</h3>
               <ul class="stack-list">
                 <li>People who tried ComfyUI and felt lost or overwhelmed.</li>
@@ -2342,7 +2537,7 @@
               </ul>
             </article>
 
-            <article class="content-card">
+            <article class="content-card reveal reveal-right reveal-delay-1">
               <h3>Objectives</h3>
               <ul class="plain-list">
                 <li>Transform sketches and 3D massing into high-fidelity renders.</li>
@@ -2356,15 +2551,15 @@
           </div>
 
           <div class="stats-grid">
-            <article class="stat-card">
+            <article class="stat-card reveal reveal-left">
               <div class="stat-number">12</div>
               <div class="stat-label">Weekly sessions in a structured progression.</div>
             </article>
-            <article class="stat-card">
+            <article class="stat-card reveal reveal-delay-1">
               <div class="stat-number">36h</div>
               <div class="stat-label">Total guided instruction across the course.</div>
             </article>
-            <article class="stat-card">
+            <article class="stat-card reveal reveal-right reveal-delay-2">
               <div class="stat-number">1</div>
               <div class="stat-label">Final project pipeline connecting concepts to delivery.</div>
             </article>
@@ -2376,15 +2571,15 @@
           </div>
 
           <div class="notes-grid">
-            <article class="note-card">
+            <article class="note-card reveal reveal-left">
               <h3>Duration</h3>
               <div class="body-copy">12 weeks, 1 day per week, 3 hours per session.</div>
             </article>
-            <article class="note-card">
+            <article class="note-card reveal reveal-delay-1">
               <h3>Total Time</h3>
               <div class="body-copy">36 guided hours across a progressive hands-on curriculum.</div>
             </article>
-            <article class="note-card">
+            <article class="note-card reveal reveal-right reveal-delay-2">
               <h3>Course Note</h3>
               <div class="body-copy">Topics and duration may be modified by the instructor based on participant knowledge and skill level.</div>
             </article>
@@ -2406,7 +2601,7 @@
 
           <div class="sessions-layout">
             <div class="session-grid">
-              <article class="session-card">
+              <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>01</strong></div>
                 <h3>AI Foundations</h3>
                 <ul>
@@ -2414,7 +2609,7 @@
                   <li>What is ComfyUI?</li>
                 </ul>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>02</strong></div>
                 <h3>Setup & Basic Workflows</h3>
                 <ul>
@@ -2424,7 +2619,7 @@
                   <li>Image-to-image workflow</li>
                 </ul>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>03</strong></div>
                 <h3>Prompting & Models</h3>
                 <ul>
@@ -2433,7 +2628,7 @@
                   <li>Model types: SDXL, Flux, Qwen Image, Z-Image</li>
                 </ul>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>04</strong></div>
                 <h3>ControlNet & LoRA Workflows</h3>
                 <ul>
@@ -2443,7 +2638,7 @@
                 </ul>
                 <div class="task">Task: Train your own LoRA</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>05</strong></div>
                 <h3>Enhancement Pipeline</h3>
                 <ul>
@@ -2453,7 +2648,7 @@
                 </ul>
                 <div class="task">Task: Execute a full image enhancement pipeline</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>06</strong></div>
                 <h3>Inpainting & Design Iteration</h3>
                 <ul>
@@ -2463,7 +2658,7 @@
                 </ul>
                 <div class="task">Task: Update materials, context, people, objects, and atmosphere</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>07</strong></div>
                 <h3>Krita Integration</h3>
                 <ul>
@@ -2474,7 +2669,7 @@
                 </ul>
                 <div class="task">Task: Deploy a custom ComfyUI workflow within Krita</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>08</strong></div>
                 <h3>3D Generation</h3>
                 <ul>
@@ -2485,7 +2680,7 @@
                 </ul>
                 <div class="task">Task: Construct a textured 3D asset from a 2D design</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>09</strong></div>
                 <h3>AI Video Generation</h3>
                 <ul>
@@ -2494,7 +2689,7 @@
                 </ul>
                 <div class="task">Task: Generate a professional cinematic animation</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>10</strong></div>
                 <h3>LLMs, MCP & Automation</h3>
                 <ul>
@@ -2506,7 +2701,7 @@
                 </ul>
                 <div class="task">Task: The final project</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>11</strong></div>
                 <h3>Vibe Coding, Websites & AI Agents</h3>
                 <ul>
@@ -2518,7 +2713,7 @@
                 </ul>
                 <div class="task">Task: Develop and launch a custom web application</div>
               </article>
-              <article class="session-card">
+              <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>12</strong></div>
                 <h3>Arch Viz & Interior AI</h3>
                 <ul>
@@ -2547,7 +2742,7 @@
           </div>
 
           <div class="register-layout">
-            <article class="register-card register-preview">
+            <article class="register-card register-preview reveal reveal-left">
               <div class="mini-badge">Curated Gallery</div>
               <div>
                 <h3>Future results will be presented like finished case studies.</h3>
@@ -2563,7 +2758,7 @@
               </ul>
             </article>
 
-            <article class="register-card register-panel">
+            <article class="register-card register-panel reveal reveal-right reveal-delay-1">
               <div>
                 <div class="mini-kicker">Planned collection</div>
                 <h3>What this gallery will include</h3>
@@ -2605,7 +2800,7 @@
           </div>
 
           <div class="register-layout">
-            <article class="register-card register-preview">
+            <article class="register-card register-preview reveal reveal-left">
               <div class="mini-badge">Early Bird</div>
               <div class="pricing-block">
                 <div class="pricing-heading">
@@ -2616,22 +2811,22 @@
                   </div>
                 </div>
                 <div class="pricing-stack">
-                  <div class="price-current">6,799 EGP</div>
+                  <div class="price-current reveal-scale">6,799 EGP</div>
                   <div class="price-original">7,999 EGP</div>
                 </div>
-                <div class="register-note">
+                <div class="register-note reveal reveal-delay-1">
                   The early enrollment rate is reserved for the first ten participants and is designed for serious creatives who want guided practice, repeatable systems, and portfolio-worthy outcomes.
                 </div>
                 <ul class="pricing-includes">
-                  <li>12 guided sessions across foundations, workflows, prompting, and production.</li>
-                  <li>Hands-on coverage of ComfyUI, ControlNet, LoRA workflows, inpainting, and enhancement pipelines.</li>
-                  <li>Practical learning path focused on real creative and architectural AI outputs.</li>
+                  <li class="reveal reveal-left">12 guided sessions across foundations, workflows, prompting, and production.</li>
+                  <li class="reveal reveal-delay-1">Hands-on coverage of ComfyUI, ControlNet, LoRA workflows, inpainting, and enhancement pipelines.</li>
+                  <li class="reveal reveal-delay-2">Practical learning path focused on real creative and architectural AI outputs.</li>
                 </ul>
-                <div class="pricing-footnote">Standard pricing applies after the first 10 seats are filled.</div>
+                <div class="pricing-footnote reveal reveal-delay-3">Standard pricing applies after the first 10 seats are filled.</div>
               </div>
             </article>
 
-            <article class="register-card register-panel">
+            <article class="register-card register-panel reveal reveal-right reveal-delay-1">
               <div>
                 <div class="mini-kicker">Enrollment notes</div>
                 <h3>Who this cohort is built for</h3>
@@ -2673,6 +2868,62 @@
   </div>
 
   <script>
+    // Custom cursor - lightweight and performant
+    const cursor = document.querySelector('.cursor');
+    const cursorRing = document.querySelector('.cursor-ring');
+    
+    if (cursor && cursorRing) {
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+
+      // Smooth cursor animation loop
+      function animateCursor() {
+        // Smooth follow with lerp
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Start animation
+      animateCursor();
+
+      // Cursor interaction states
+      const interactiveElements = document.querySelectorAll('a, button, .tab, .session-card, .content-card, .note-card, .stat-card, .register-card, .floating-card, .scroll-button');
+      
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
+      });
+    }
+
+    // Scroll reveal with IntersectionObserver
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Tab switching
     const tabs = Array.from(document.querySelectorAll('.tab'));
     const panels = Array.from(document.querySelectorAll('.panel'));
     let currentPanel = document.querySelector('.panel.active');
