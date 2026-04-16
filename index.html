@@ -1336,6 +1336,119 @@
       align-items: stretch;
     }
 
+    .hero--cinematic {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      min-height: 680px;
+      padding: 40px;
+      overflow: hidden;
+      isolation: isolate;
+      background: #0d0b12;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(7, 6, 11, 0.88) 0%, rgba(7, 6, 11, 0.72) 34%, rgba(7, 6, 11, 0.34) 58%, rgba(7, 6, 11, 0.2) 100%),
+        linear-gradient(180deg, rgba(7, 6, 11, 0.28) 0%, rgba(7, 6, 11, 0.56) 100%);
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 18px;
+      width: min(640px, 100%);
+      padding: 8px 4px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(232, 225, 245, 0.72);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 96px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 123, 29, 0), rgba(255, 123, 29, 0.95));
+    }
+
+    .hero-title {
+      margin: 0;
+      max-width: 11ch;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(2.9rem, 6vw, 5.4rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      max-width: 38ch;
+      color: rgba(232, 225, 245, 0.7);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      margin: 0;
+      max-width: 52ch;
+      color: rgba(237, 232, 245, 0.86);
+      font-size: 1.06rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hero-button {
+      min-width: 164px;
+      border-color: rgba(255, 123, 29, 0.88);
+      background: #ff7b1d;
+      color: #f8f3eb;
+      box-shadow: none;
+    }
+
+    .hero-button:hover,
+    .hero-button:focus-visible {
+      background: #ff8a35;
+      border-color: #ff8a35;
+    }
+
     .eyebrow,
     .mini-kicker {
       display: inline-flex;
@@ -1729,7 +1842,8 @@
     }
 
     .stats-grid,
-    .notes-grid {
+    .notes-grid,
+    .instructors-grid {
       margin-top: 22px;
     }
 
@@ -1739,6 +1853,30 @@
 
     .notes-grid {
       grid-template-columns: 1.15fr 0.85fr 0.85fr;
+    }
+
+    .instructors-grid {
+      display: flex;
+      gap: 22px;
+      padding: 22px;
+      background: linear-gradient(135deg, var(--card-dark), rgba(11, 9, 18, 0.94));
+      border: var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .instructor-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .stat-card {
@@ -1826,7 +1964,8 @@
 
     .content-card,
     .note-card,
-    .register-card {
+    .register-card,
+    .instructor-card {
       transition:
         transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
         border-color 220ms ease,
@@ -1841,6 +1980,51 @@
     .stat-card:hover,
     .floating-card:hover {
       transform: translateY(-1px);
+    }
+
+    .instructor-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(138, 126, 168, 0.04);
+    }
+
+    .instructor-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 300ms ease;
+    }
+
+    .instructor-card:hover .instructor-photo img {
+      transform: scale(1.03);
+    }
+
+    .instructor-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .instructor-card h3 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 1.7rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .instructor-role {
+      color: rgba(138, 126, 168, 0.7);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .instructor-bio {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.95rem;
     }
 
     .session-index {
@@ -1911,6 +2095,8 @@
       background:
         radial-gradient(circle at 20% 18%, rgba(138, 126, 168, 0.08), transparent 26%),
         linear-gradient(180deg, rgba(237, 232, 245, 0.05), rgba(237, 232, 245, 0.018));
+      justify-content: flex-start;
+      gap: 18px;
     }
 
     .register-preview .mini-badge {
@@ -2189,6 +2375,11 @@
         padding: clamp(34px, 4vw, 48px);
       }
 
+      .hero--cinematic {
+        min-height: 620px;
+        padding: 34px;
+      }
+
       .section-shell {
         padding: clamp(28px, 4vw, 36px);
       }
@@ -2229,6 +2420,39 @@
       .cursor,
       .cursor-ring {
         display: none !important;
+      }
+
+      .hero--cinematic {
+        min-height: 560px;
+        padding: 28px 24px;
+      }
+
+      .hero-overlay {
+        background:
+          linear-gradient(180deg, rgba(7, 6, 11, 0.26) 0%, rgba(7, 6, 11, 0.58) 54%, rgba(7, 6, 11, 0.9) 100%),
+          linear-gradient(90deg, rgba(7, 6, 11, 0.74) 0%, rgba(7, 6, 11, 0.3) 100%);
+      }
+
+      .hero-content {
+        width: min(100%, 560px);
+      }
+
+      .hero-kicker::before {
+        width: 56px;
+      }
+
+      .hero-title {
+        max-width: 12ch;
+        font-size: clamp(2.6rem, 7.2vw, 4.4rem);
+      }
+
+      .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+      }
+
+      .hero-description {
+        font-size: 0.98rem;
       }
 
       .topbar {
@@ -2294,8 +2518,14 @@
 
       .session-grid,
       .stats-grid,
-      .notes-grid {
+      .notes-grid,
+      .instructors-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .instructors-grid {
+        display: grid;
+        flex-direction: row;
       }
 
       .session-card,
@@ -2357,6 +2587,50 @@
     }
 
     @media (max-width: 680px) {
+      .hero--cinematic {
+        min-height: 500px;
+        padding: 22px 18px;
+        align-items: end;
+      }
+
+      .hero-content {
+        gap: 14px;
+      }
+
+      .hero-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-kicker::before {
+        width: 34px;
+      }
+
+      .hero-title {
+        max-width: none;
+        font-size: clamp(2.2rem, 11vw, 3.5rem);
+      }
+
+      .hero-subtitle {
+        max-width: 30ch;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-description {
+        font-size: 0.94rem;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-button {
+        width: 100%;
+      }
+
       .shell {
         padding: 8px 8px 28px;
       }
@@ -2426,6 +2700,10 @@
       .register-layout,
       .overview-grid {
         grid-template-columns: 1fr;
+      }
+
+      .instructors-grid {
+        flex-direction: column;
       }
 
       .button-row {
@@ -2552,11 +2830,16 @@
     <main>
       <section id="panel-overview" class="panel active" role="tabpanel" aria-labelledby="overview-tab">
         <header class="hero-frame fade-up delay-1">
-          <div class="hero">
-            <div class="hero-copy">
-              <div class="eyebrow reveal reveal-left">Generative AI Course Experience</div>
-              <h1 class="reveal reveal-left reveal-delay-1">For creatives who want authorship over AI, not just output.</h1>
-              <p class="reveal reveal-left reveal-delay-2">
+          <div class="hero hero--cinematic">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+              <source src="assets/Home animation.webm" type="video/webm" />
+            </video>
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-content">
+              <div class="hero-kicker reveal reveal-left">Generative AI Course</div>
+              <h1 class="hero-title reveal reveal-left reveal-delay-1">For creatives who want authorship over AI, not just output.</h1>
+              <p class="hero-description reveal reveal-left reveal-delay-2">
                 A 12-week studio for designers, architects, visualizers, and artists building real command of image generation, 3D workflows, motion, automation, and AI-assisted web creation.
               </p>
               <div class="hero-meta reveal reveal-left reveal-delay-3">
@@ -2565,19 +2848,8 @@
                 <div class="pill">Studio Cohort</div>
                 <div class="pill">Final Pipeline</div>
               </div>
-            </div>
-
-            <div class="hero-art">
-              <div class="visual-card fade-up delay-2">
-                <div class="editorial-stat"><span>Studio format</span><strong>12 weeks / 36 hours</strong></div>
-                <div class="visual-center">Creative<br />AI Studio</div>
-              </div>
-              <div class="floating-card fade-up delay-3">
-                <div class="mini-kicker">Why this course</div>
-                <h3>Built for creatives who want systems, not shortcuts.</h3>
-                <div class="body-copy">
-                  Build reusable node-based systems instead of one-off prompts, while learning how generative workflows actually behave under the hood and how to direct them with confidence.
-                </div>
+              <div class="hero-actions reveal reveal-left reveal-delay-4">
+                <button class="button hero-button" type="button" data-panel-target="register">Enroll</button>
               </div>
             </div>
           </div>
@@ -2629,6 +2901,39 @@
             <article class="stat-card reveal reveal-right reveal-delay-2">
               <div class="stat-number">1</div>
               <div class="stat-label">Final project pipeline connecting concepts to delivery.</div>
+            </article>
+          </div>
+
+          <div class="subsection-head fade-up delay-2">
+            <div class="eyebrow">Instructors</div>
+            <h3>Learn from practitioners building real AI workflows.</h3>
+          </div>
+
+          <div class="instructors-grid">
+            <article class="instructor-card reveal reveal-left">
+              <div class="instructor-photo">
+                <img src="assets/Mostafa Mohamed.jpg" alt="Portrait of Mostafa Mohamed" />
+              </div>
+              <div class="instructor-body">
+                <h3>Mostafa Mohamed</h3>
+                <div class="instructor-role">AI Specialist, 3D Visualizer</div>
+                <p class="instructor-bio">
+                  Mostafa Mohamed is an AI Workflow Specialist focused on building systems, design, and visual production workflows for companies, with full-time experience at Stylus. He brings 2 years of hands-on work with ComfyUI, open and closed generative AI tools, and has contributed to projects with DSC, Emaar Masr, and Any Design Studio. He was also one of the former founders of Any More, an AI lab.
+                </p>
+              </div>
+            </article>
+
+            <article class="instructor-card reveal reveal-right reveal-delay-1">
+              <div class="instructor-photo">
+                <img src="assets/Mariam adel .jpeg" alt="Portrait of Mariam Adel" />
+              </div>
+              <div class="instructor-body">
+                <h3>Mariam Adel</h3>
+                <div class="instructor-role">AI Systems and Workflow Specialist</div>
+                <p class="instructor-bio">
+                  Mariam Adel is an AI Systems and Workflow Specialist focused on developing AI-driven systems and design production workflows. She has professional experience as an AI Specialist at Emaar Misr and brings 3 years of hands-on expertise with ComfyUI, as well as local and closed-source generative AI tools. She combines practical industry experience with academic involvement, having previously served as a Teaching Assistant at Ain Shams University. Additionally, she has worked as a Project Design Coordinator at Diaa Consult.
+                </p>
+              </div>
             </article>
           </div>
 
@@ -3037,6 +3342,10 @@
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => activatePanel(tab.dataset.panel));
+    });
+
+    document.querySelectorAll('[data-panel-target]').forEach((element) => {
+      element.addEventListener('click', () => activatePanel(element.dataset.panelTarget));
     });
 
     const defaultTab = document.querySelector('.tab.active');
