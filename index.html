@@ -6,23 +6,23 @@
   <title>ComfyUI Generative AI Course</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0d14;
-      --bg-soft: #15131c;
-      --panel: rgba(19, 18, 27, 0.78);
-      --panel-strong: rgba(23, 22, 32, 0.9);
-      --card: rgba(255, 255, 255, 0.055);
-      --card-soft: rgba(255, 255, 255, 0.03);
-      --line: rgba(255, 255, 255, 0.1);
-      --line-strong: rgba(255, 255, 255, 0.18);
-      --text: #f3eefc;
-      --text-soft: #cbc6d7;
-      --text-dim: #928aa6;
-      --accent: #b9adff;
-      --accent-2: #8ea2ff;
-      --glow: rgba(185, 173, 255, 0.16);
+      --bg-soft: #13121b;
+      --panel: rgba(17, 16, 25, 0.78);
+      --panel-strong: rgba(15, 14, 22, 0.9);
+      --card: rgba(255, 255, 255, 0.045);
+      --card-soft: rgba(255, 255, 255, 0.025);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.14);
+      --text: #ede8f5;
+      --text-soft: #c4bdd4;
+      --text-dim: #8a7e9e;
+      --accent: #7b6fa3;
+      --accent-2: #5a628f;
+      --glow: rgba(123, 111, 163, 0.12);
       --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
       --radius-xl: 32px;
       --radius-lg: 24px;
@@ -36,7 +36,6 @@
 
     html {
       scroll-behavior: smooth;
-      cursor: none;
     }
 
     body {
@@ -45,11 +44,10 @@
       font-family: "Plus Jakarta Sans", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top center, rgba(142, 162, 255, 0.08), transparent 24%),
-        radial-gradient(circle at 20% 0%, rgba(185, 173, 255, 0.08), transparent 28%),
-        linear-gradient(180deg, #0f0d14 0%, #121019 52%, #0f0d14 100%);
+        radial-gradient(circle at top center, rgba(90, 98, 143, 0.06), transparent 24%),
+        radial-gradient(circle at 20% 0%, rgba(123, 111, 163, 0.06), transparent 28%),
+        linear-gradient(180deg, #0f0d14 0%, #111018 52%, #0f0d14 100%);
       overflow-x: hidden;
-      cursor: none;
     }
 
     body::before,
@@ -62,7 +60,6 @@
     input,
     textarea,
     select {
-      cursor: none;
     }
 
     .cursor,
@@ -81,23 +78,23 @@
       width: 10px;
       height: 10px;
       background: linear-gradient(135deg, #ffffff, var(--accent));
-      box-shadow: 0 0 24px rgba(157, 141, 216, 0.7);
+      box-shadow: 0 0 24px rgba(123, 111, 163, 0.5);
       transition: width 180ms ease, height 180ms ease, opacity 180ms ease;
     }
 
     .cursor-ring {
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(205, 196, 227, 0.34);
-      background: radial-gradient(circle, rgba(157, 141, 216, 0.14), transparent 65%);
+      border: 1px solid rgba(164, 144, 194, 0.24);
+      background: radial-gradient(circle, rgba(123, 111, 163, 0.1), transparent 65%);
       transition: width 220ms ease, height 220ms ease, border-color 220ms ease, background 220ms ease;
     }
 
     .cursor-ring.active {
       width: 66px;
       height: 66px;
-      border-color: rgba(157, 141, 216, 0.52);
-      background: radial-gradient(circle, rgba(157, 141, 216, 0.18), transparent 70%);
+      border-color: rgba(123, 111, 163, 0.38);
+      background: radial-gradient(circle, rgba(123, 111, 163, 0.14), transparent 70%);
     }
 
     .scroll-controls {
@@ -114,7 +111,7 @@
       height: 48px;
       border: 1px solid var(--line);
       border-radius: 16px;
-      background: rgba(24, 20, 34, 0.84);
+      background: rgba(18, 17, 26, 0.84);
       color: var(--text);
       font-family: "Sora", sans-serif;
       font-size: 1.1rem;
@@ -367,7 +364,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 22%);
+      background: linear-gradient(180deg, rgba(70, 80, 140, 0.035), transparent 18%);
       pointer-events: none;
     }
 
@@ -376,8 +373,8 @@
       min-height: 290px;
       overflow: hidden;
       background:
-        radial-gradient(circle at center, rgba(185, 173, 255, 0.08), transparent 42%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        radial-gradient(circle at center, rgba(138, 126, 168, 0.06), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
     }
 
     .visual-card .orbit-ring {
@@ -401,8 +398,8 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(185, 173, 255, 0.55));
-      box-shadow: 0 0 18px rgba(185, 173, 255, 0.38);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(138, 126, 168, 0.45));
+      box-shadow: 0 0 18px rgba(138, 126, 168, 0.28);
       opacity: 0.88;
       animation: pulseFloat 4.2s ease-in-out infinite;
     }
@@ -493,12 +490,12 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
       color: var(--accent);
       font-style: normal;
       font-size: 0.7rem;
       font-weight: 800;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .tool-chip small {
@@ -589,7 +586,7 @@
       padding: 16px 18px;
       border-radius: 18px;
       border: 1px solid var(--line);
-      background: rgba(157, 141, 216, 0.08);
+      background: rgba(138, 126, 168, 0.06);
     }
 
     .plain-list li {
@@ -606,7 +603,7 @@
       height: 7px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 16px rgba(157, 141, 216, 0.4);
+      box-shadow: 0 0 16px rgba(138, 126, 168, 0.3);
     }
 
     .stats-grid {
@@ -849,12 +846,12 @@
       gap: 10px;
       padding: 12px 14px;
       border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
       color: var(--text);
       font-size: 0.95rem;
       line-height: 1.7;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
     }
 
     .pricing-footnote::before {
@@ -864,7 +861,7 @@
       border-radius: 50%;
       flex: 0 0 auto;
       background: var(--accent);
-      box-shadow: 0 0 16px rgba(157, 141, 216, 0.5);
+      box-shadow: 0 0 16px rgba(138, 126, 168, 0.35);
     }
 
     .pricing-includes {
@@ -890,7 +887,7 @@
       height: 6px;
       border-radius: 50%;
       background: var(--accent);
-      opacity: 0.95;
+      opacity: 0.9;
     }
 
     .register-panel {
@@ -930,8 +927,8 @@
     .field input:focus,
     .field textarea:focus {
       outline: none;
-      border-color: rgba(157, 141, 216, 0.44);
-      box-shadow: 0 0 0 4px rgba(157, 141, 216, 0.09);
+      border-color: rgba(138, 126, 168, 0.34);
+      box-shadow: 0 0 0 4px rgba(138, 126, 168, 0.07);
       transform: translateY(-1px);
     }
 
@@ -953,10 +950,10 @@
     }
 
     .button.primary {
-      background: linear-gradient(135deg, rgba(142, 162, 255, 0.34), rgba(185, 173, 255, 0.28));
-      border-color: rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(90, 98, 143, 0.28), rgba(138, 126, 168, 0.22));
+      border-color: rgba(255, 255, 255, 0.10);
       color: white;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 34px rgba(0, 0, 0, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 14px 34px rgba(0, 0, 0, 0.18);
     }
 
     .button:hover,
@@ -1062,11 +1059,1211 @@
         max-width: none;
       }
     }
+
+    /* Luxury editorial redesign */
+    :root {
+      --bg: #0b0910;
+      --bg-soft: #0e0d16;
+      --panel: rgba(14, 13, 20, 0.92);
+      --panel-strong: rgba(11, 10, 16, 0.97);
+      --card: rgba(237, 232, 245, 0.022);
+      --card-soft: rgba(237, 232, 245, 0.014);
+      --line: rgba(164, 144, 194, 0.10);
+      --line-strong: rgba(164, 144, 194, 0.18);
+      --text: #ede8f5;
+      --text-soft: #c4bdd4;
+      --text-dim: #7a6e92;
+      --accent: #8a7ea8;
+      --accent-2: #4a4e8f;
+      --glow: rgba(138, 126, 168, 0.08);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --space-1: 12px;
+      --space-2: 16px;
+      --space-3: 22px;
+      --space-4: 32px;
+      --space-5: 44px;
+    }
+
+    html {
+      cursor: auto;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(138, 126, 168, 0.06), transparent 24%),
+        radial-gradient(circle at 12% 0%, rgba(74, 78, 143, 0.09), transparent 28%),
+        linear-gradient(180deg, #0b0910 0%, #0e0d15 48%, #0b0910 100%);
+      cursor: auto;
+    }
+
+    a,
+    button {
+      cursor: pointer;
+    }
+
+    input,
+    textarea,
+    select {
+      cursor: text;
+    }
+
+    .cursor,
+    .cursor-ring {
+      display: none !important;
+    }
+
+    .scroll-controls {
+      right: 22px;
+      bottom: 22px;
+      gap: 12px;
+    }
+
+    .scroll-button {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border-color: var(--line);
+      background: var(--panel-strong);
+      color: var(--text-soft);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+    }
+
+    .scroll-button:hover,
+    .scroll-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      background: rgba(16, 15, 22, 0.96);
+      color: var(--text);
+    }
+
+    .shell {
+      max-width: none;
+      padding: 8px 8px 56px;
+    }
+
+    .topbar {
+      top: 18px;
+      padding: 18px 24px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+    }
+
+    .brand {
+      gap: 16px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(138, 126, 168, 0.10);
+      box-shadow: none;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 3px;
+    }
+
+    .brand-kicker {
+      color: var(--text-dim);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .tabbar {
+      gap: 16px;
+    }
+
+    .tab {
+      padding: 8px 0 12px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--text-dim);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: none;
+      opacity: 0.88;
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        color 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .tab::before {
+      inset: auto 0 0;
+      height: 1px;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0;
+    }
+
+    .tab:hover,
+    .tab:focus-visible {
+      transform: none;
+      border-color: transparent;
+      color: var(--text-soft);
+      box-shadow: none;
+    }
+
+    .tab.active {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .tab.active::before,
+    .tab:hover::before,
+    .tab:focus-visible::before {
+      opacity: 1;
+    }
+
+    .tab:hover,
+    .tab:focus-visible,
+    .tab.active {
+      opacity: 1;
+    }
+
+    .hero-frame,
+    .section-shell {
+      margin-top: var(--space-2);
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(10, 9, 9, 0.9);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-3);
+      padding: 40px 36px;
+      align-items: stretch;
+    }
+
+    .eyebrow,
+    .mini-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .mini-kicker::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(138, 126, 168, 0), rgba(138, 126, 168, 0.7));
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      line-height: 0.96;
+      text-wrap: balance;
+    }
+
+    h1 {
+      margin-top: 14px;
+      max-width: 11ch;
+      font-size: clamp(4.25rem, 6.3vw, 6.8rem);
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy p,
+    .section-copy,
+    .body-copy,
+    li,
+    .register-note {
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.9;
+      text-wrap: pretty;
+    }
+
+    .hero-copy {
+      position: relative;
+      display: grid;
+      align-content: start;
+      padding-left: 0;
+    }
+
+    .hero-copy p {
+      max-width: 58ch;
+      margin-top: 16px;
+    }
+
+    .hero-copy p + p {
+      color: rgba(138, 126, 168, 0.6);
+    }
+
+    .hero-meta {
+      margin-top: 26px;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card-soft);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-art {
+      gap: 18px;
+    }
+
+    .visual-card,
+    .floating-card,
+    .stats-grid .stat-card,
+    .overview-grid .content-card,
+    .notes-grid .note-card,
+    .register-card,
+    .session-card {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
+      box-shadow: none;
+    }
+
+    .visual-card {
+      min-height: 420px;
+      background:
+        linear-gradient(145deg, rgba(14, 13, 24, 0.96), rgba(9, 8, 18, 0.9));
+    }
+
+    .visual-card::before {
+      display: none;
+    }
+
+    .visual-card .orbit-ring,
+    .visual-card .signal-node,
+    .visual-card .orbit-label,
+    .visual-card .tool-chip {
+      display: none;
+    }
+
+    .visual-card::after {
+      inset: 24px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .editorial-sweep,
+    .editorial-column,
+    .editorial-marble {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .editorial-sweep,
+    .editorial-column,
+    .editorial-marble {
+      display: none;
+    }
+
+    .editorial-caption,
+    .editorial-stat {
+      position: absolute;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(14, 13, 13, 0.88);
+      color: var(--text-soft);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .caption-top,
+    .caption-bottom {
+      display: none;
+    }
+
+    .editorial-stat {
+      right: 28px;
+      top: 38%;
+      display: grid;
+      gap: 4px;
+      min-width: 190px;
+    }
+
+    .editorial-stat span {
+      color: var(--text-dim);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .editorial-stat strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .visual-center {
+      width: 196px;
+      height: 196px;
+      border-radius: 50%;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      background: linear-gradient(145deg, rgba(243, 238, 252, 0.09), rgba(243, 238, 252, 0.025));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+      animation: centerBreath 9s ease-in-out infinite;
+    }
+
+    .visual-center::before {
+      inset: -16px;
+      border-color: rgba(138, 126, 168, 0.10);
+    }
+
+    .floating-card {
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .floating-card h3,
+    .content-card h3,
+    .session-card h3,
+    .note-card h3,
+    .register-card h3 {
+      margin-top: 14px;
+      margin-bottom: 12px;
+      font-size: 2rem;
+      line-height: 0.98;
+    }
+
+    .section-shell {
+      padding: 44px 32px 32px;
+    }
+
+    .section-shell::before {
+      display: none;
+    }
+
+    .panel-credit {
+      margin-top: 30px;
+      color: rgba(138, 126, 168, 0.4);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr) auto;
+      align-items: start;
+      gap: 22px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      margin-top: 14px;
+      max-width: 11ch;
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .section-copy {
+      max-width: 30ch;
+      padding-top: 12px;
+      color: rgba(138, 126, 168, 0.7);
+      font-size: 0.98rem;
+    }
+
+    .subsection-head {
+      margin-top: 44px;
+      margin-bottom: 22px;
+      max-width: 34rem;
+    }
+
+    .subsection-head h3 {
+      margin-top: 10px;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      line-height: 1.02;
+    }
+
+    .section-shell,
+    .content-card,
+    .note-card,
+    .stat-card,
+    .session-card,
+    .register-card,
+    .floating-card {
+      contain: layout paint;
+    }
+
+    .section-meta {
+      flex: 0 0 auto;
+      padding-top: 12px;
+      color: var(--text-dim);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .content-card,
+    .note-card,
+    .register-card,
+    .stat-card,
+    .floating-card,
+    .session-card {
+      text-wrap: pretty;
+    }
+
+    .overview-grid,
+    .stats-grid,
+    .notes-grid,
+    .register-layout,
+    .session-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .overview-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      align-items: start;
+    }
+
+    .content-card,
+    .note-card,
+    .register-card {
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(14, 14, 26, 0.96), rgba(9, 9, 18, 0.94));
+    }
+
+    .stack-list li {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(138, 126, 168, 0.04);
+      line-height: 1.8;
+    }
+
+    .plain-list li,
+    .session-card li,
+    .pricing-includes li,
+    .showcase-list li,
+    .detail-list li {
+      padding-left: 18px;
+    }
+
+    .plain-list li::before,
+    .session-card li::before,
+    .pricing-includes li::before,
+    .showcase-list li::before,
+    .detail-list li::before {
+      width: 6px;
+      height: 6px;
+      top: 11px;
+      background: rgba(138, 126, 168, 0.32);
+      box-shadow: none;
+    }
+
+    .stats-grid,
+    .notes-grid {
+      margin-top: 22px;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+    }
+
+    .notes-grid {
+      grid-template-columns: 1.15fr 0.85fr 0.85fr;
+    }
+
+    .stat-card {
+      padding: 22px 20px;
+      min-height: 160px;
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .stat-number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3.6rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .stat-label {
+      margin-top: 14px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      max-width: 26ch;
+    }
+
+    .session-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .session-card {
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+      padding: 22px 20px 20px;
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .session-card:nth-child(-n+3) {
+      background: rgba(237, 232, 245, 0.015);
+    }
+
+    .session-card::after {
+      background: radial-gradient(circle, rgba(138, 126, 168, 0.08), transparent 72%);
+    }
+
+    .session-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(138, 126, 168, 0.2);
+      background: linear-gradient(180deg, rgba(138, 126, 168, 0.06), rgba(237, 232, 245, 0.015));
+      box-shadow: none;
+    }
+
+    .content-card,
+    .note-card,
+    .register-card {
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .content-card:hover,
+    .note-card:hover,
+    .register-card:hover,
+    .stat-card:hover,
+    .floating-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .session-index {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 14px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      backdrop-filter: none;
+      color: var(--text-dim);
+    }
+
+    .session-index span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .session-index strong {
+      min-width: 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--text);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .session-card h3 {
+      font-size: 2rem;
+      max-width: 12ch;
+    }
+
+    .session-card ul {
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .session-card li {
+      line-height: 1.78;
+    }
+
+    .task {
+      margin-top: auto;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.65;
+      text-transform: uppercase;
+    }
+
+    .register-layout {
+      grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+    }
+
+    .register-preview {
+      min-height: 300px;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(138, 126, 168, 0.08), transparent 26%),
+        linear-gradient(180deg, rgba(237, 232, 245, 0.05), rgba(237, 232, 245, 0.018));
+    }
+
+    .register-preview .mini-badge {
+      padding: 8px 12px;
+      border: 1px solid rgba(138, 126, 168, 0.12);
+      background: var(--card-soft);
+      color: var(--text-soft);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+    }
+
+    .pricing-heading {
+      gap: 8px;
+    }
+
+    .pricing-meta,
+    .button-row {
+      gap: 10px;
+    }
+
+    .pricing-pill {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text-soft);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+    }
+
+    .price-current {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.1rem, 5vw, 4.6rem);
+      font-weight: 600;
+      line-height: 0.92;
+      color: var(--text);
+    }
+
+    .price-original {
+      color: rgba(138, 126, 168, 0.5);
+    }
+
+    .pricing-footnote {
+      border-color: var(--line);
+      background: var(--card);
+      box-shadow: none;
+    }
+
+    .pricing-footnote::before {
+      background: var(--accent);
+      box-shadow: none;
+    }
+
+    .register-panel {
+      gap: 18px;
+      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
+    }
+
+    .showcase-list,
+    .detail-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .exhibit-stack,
+    .enroll-facts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .exhibit-card,
+    .fact-row {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(138, 126, 168, 0.04);
+    }
+
+    .exhibit-card strong,
+    .fact-row strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .contact-note {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--card-soft);
+      color: rgba(138, 126, 168, 0.7);
+      line-height: 1.75;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 20px;
+      background: var(--card);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition:
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        background 220ms ease,
+        color 220ms ease,
+        box-shadow 220ms ease,
+        opacity 220ms ease;
+    }
+
+    .register-note,
+    .contact-note,
+    .exhibit-card,
+    .fact-row {
+      text-wrap: pretty;
+    }
+
+    .button.primary {
+      background: rgba(138, 126, 168, 0.10);
+      border-color: var(--line-strong);
+      box-shadow: none;
+    }
+
+    .button.primary::after {
+      display: none;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      background: var(--card-soft);
+    }
+
+    .button.primary:hover,
+    .button.primary:focus-visible {
+      background: rgba(138, 126, 168, 0.14);
+    }
+
+    #panel-overview .section-shell { background: rgba(9, 8, 16, 0.94); }
+    #panel-sessions .section-shell { background: rgba(10, 9, 17, 0.94); }
+    #panel-showcase .section-shell { background: rgba(9, 8, 16, 0.95); }
+    #panel-register .section-shell { background: rgba(11, 9, 17, 0.95); }
+
+    .fade-up {
+      transform: translateY(14px);
+      animation-duration: 640ms;
+    }
+
+    .panel {
+      display: none;
+      opacity: 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 1200px;
+    }
+
+    .panel.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .panel.panel-enter {
+      animation: panelIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: rise 900ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 120ms; }
+    .delay-2 { animation-delay: 220ms; }
+    .delay-3 { animation-delay: 320ms; }
+    .delay-4 { animation-delay: 420ms; }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes panelIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glassEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseFloat {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes sweepDrift {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.72;
+      }
+
+      to {
+        transform: translate3d(-8px, 10px, 0) scale(1.035);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes marbleDrift {
+      from {
+        transform: rotate(12deg) translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: rotate(9deg) translate3d(-6px, -8px, 0);
+      }
+    }
+
+    @keyframes centerBreath {
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.018);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .shell {
+        padding: 14px 14px 44px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: clamp(34px, 4vw, 48px);
+      }
+
+      .section-shell {
+        padding: clamp(28px, 4vw, 36px);
+      }
+
+      .section-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 18px 24px;
+      }
+
+      .section-copy {
+        max-width: 44ch;
+      }
+
+      .overview-grid,
+      .register-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid,
+      .notes-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 960px) {
+      .topbar {
+        padding: 16px 18px;
+        border-radius: 24px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .tabbar {
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+      }
+
+      .tabbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab {
+        flex: 0 0 auto;
+        min-height: 44px;
+        padding: 10px 0 12px;
+      }
+
+      h1 {
+        font-size: clamp(3.4rem, 10vw, 5.1rem);
+        max-width: 9ch;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .section-header h2 {
+        max-width: 13ch;
+      }
+
+      .hero-copy p,
+      .section-copy,
+      .body-copy,
+      li,
+      .register-note {
+        font-size: 0.96rem;
+        line-height: 1.78;
+      }
+
+      .visual-card {
+        min-height: 340px;
+      }
+
+      .editorial-stat {
+        top: auto;
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
+        min-width: 0;
+      }
+
+      .session-grid,
+      .stats-grid,
+      .notes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .session-card,
+      .session-card:nth-child(3n + 1),
+      .session-card:nth-child(5),
+      .session-card:nth-child(10) {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        padding: 8px 8px 28px;
+      }
+
+      .topbar {
+        top: 10px;
+        gap: 12px;
+        padding: 14px 14px 12px;
+        border-radius: 20px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-title {
+        font-size: 1.35rem;
+      }
+
+      .hero,
+      .section-shell {
+        padding: 20px 16px;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 13vw, 3.9rem);
+        max-width: 10ch;
+      }
+
+      .floating-card,
+      .content-card,
+      .note-card,
+      .register-card,
+      .session-card {
+        padding: 18px 16px;
+        border-radius: 22px;
+      }
+
+      .visual-card {
+        min-height: 280px;
+      }
+
+      .visual-center {
+        width: 148px;
+        height: 148px;
+        font-size: 1.45rem;
+      }
+
+      .stat-card,
+      .session-card,
+      .register-preview {
+        min-height: auto;
+      }
+
+      .session-card h3,
+      .floating-card h3,
+      .content-card h3,
+      .note-card h3,
+      .register-card h3 {
+        font-size: 1.7rem;
+      }
+
+      .stats-grid,
+      .notes-grid,
+      .session-grid,
+      .register-layout,
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 18px;
+      }
+
+      .scroll-controls {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .scroll-button {
+        width: 46px;
+        height: 46px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="cursor-ring" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"></div>
   <div class="scroll-controls" aria-label="Page navigation">
     <button class="scroll-button" id="scroll-up" type="button" aria-label="Scroll to top">↑</button>
     <button class="scroll-button" id="scroll-down" type="button" aria-label="Scroll to bottom">↓</button>
@@ -1075,7 +2272,7 @@
   <div class="shell">
     <nav class="topbar fade-up">
       <div class="brand">
-        <img class="brand-mark" src="assets/logo.png" alt="MeeM Academy logo" />
+        <img class="brand-mark" src="assets/logo.png" alt="MeeM Academy logo" width="48" height="48" decoding="async" fetchpriority="high" />
         <div class="brand-copy">
           <div class="brand-kicker">MeeM Academy</div>
           <div class="brand-title">Generative AI course</div>
@@ -1083,10 +2280,10 @@
       </div>
 
       <div class="tabbar" role="tablist" aria-label="Course sections">
-        <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-overview" data-panel="overview">Overview</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sessions" data-panel="sessions">Sessions</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-showcase" data-panel="showcase">Showcase</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-register" data-panel="register">Enroll</button>
+        <button id="overview-tab" class="tab active" role="tab" aria-selected="true" aria-controls="panel-overview" data-panel="overview">Overview</button>
+        <button id="sessions-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-sessions" data-panel="sessions">Sessions</button>
+        <button id="showcase-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-showcase" data-panel="showcase">Showcase</button>
+        <button id="register-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-register" data-panel="register">Enroll</button>
       </div>
     </nav>
 
@@ -1096,44 +2293,28 @@
           <div class="hero">
             <div class="hero-copy">
               <div class="eyebrow">Generative AI Course Experience</div>
-              <h1>Master creative AI with clarity, control, and style.</h1>
+              <h1>For creatives who want authorship over AI, not just output.</h1>
               <p>
-                A premium 12-week learning experience for designers, architects, visualization specialists, artists, and technical creatives who want practical command over image generation, 3D workflows, AI video, automation, and AI-assisted web creation.
-              </p>
-              <p>
-                The interface is now organized into focused tabs so visitors can explore the course in clearer sections without seeing everything at once.
+                A 12-week studio for designers, architects, visualizers, and artists building real command of image generation, 3D workflows, motion, automation, and AI-assisted web creation.
               </p>
               <div class="hero-meta">
-                <div class="pill">Overview</div>
-                <div class="pill">Sessions</div>
-                <div class="pill">Showcase</div>
-                <div class="pill">Enroll</div>
+                <div class="pill">12 Weeks</div>
+                <div class="pill">36 Guided Hours</div>
+                <div class="pill">Studio Cohort</div>
+                <div class="pill">Final Pipeline</div>
               </div>
             </div>
 
             <div class="hero-art">
               <div class="visual-card fade-up delay-2">
-                <div class="orbit-ring outer" aria-hidden="true"></div>
-                <div class="orbit-ring inner" aria-hidden="true"></div>
-                <div class="signal-node signal-a" aria-hidden="true"></div>
-                <div class="signal-node signal-b" aria-hidden="true"></div>
-                <div class="signal-node signal-c" aria-hidden="true"></div>
-                <div class="orbit-label label-a">Image</div>
-                <div class="orbit-label label-b">Video</div>
-                <div class="orbit-label label-c">3D Mesh</div>
-                <div class="orbit-label label-d">Automation</div>
-                <div class="tool-chip tool-e"><i>CF</i><div><small>Node Flow</small>ComfyUI</div></div>
-                <div class="tool-chip tool-f"><i>GM</i><div><small>Model</small>Gemini</div></div>
-                <div class="tool-chip tool-g"><i>OC</i><div><small>Build</small>OpenCode</div></div>
-                <div class="tool-chip tool-h"><i>AL</i><div><small>Agent</small>AnythingLLM</div></div>
-                <div class="tool-chip tool-i"><i>FP</i><div><small>Assets</small>Freepik</div></div>
-                <div class="tool-chip tool-j"><i>HG</i><div><small>Motion</small>Higgsfield AI</div></div>
-                <div class="visual-center">GenAI<br />Flow</div>
+                <div class="editorial-stat"><span>Studio format</span><strong>12 weeks / 36 hours</strong></div>
+                <div class="visual-center">Creative<br />AI Studio</div>
               </div>
               <div class="floating-card fade-up delay-3">
-                <h3>Why this course</h3>
+                <div class="mini-kicker">Why this course</div>
+                <h3>Built for creatives who want systems, not shortcuts.</h3>
                 <div class="body-copy">
-                  Build reusable node-based systems instead of one-off prompts while understanding how generative AI workflows actually behave under the hood.
+                  Build reusable node-based systems instead of one-off prompts, while learning how generative workflows actually behave under the hood and how to direct them with confidence.
                 </div>
               </div>
             </div>
@@ -1144,8 +2325,9 @@
           <div class="section-header">
             <div>
               <div class="eyebrow">Overview</div>
-              <h2>Audience and objectives in one focused view.</h2>
+              <h2>Who it is for, and what it unlocks.</h2>
             </div>
+            <div class="section-meta">Overview / 01</div>
           </div>
 
           <div class="overview-grid">
@@ -1188,11 +2370,9 @@
             </article>
           </div>
 
-          <div class="section-header" style="margin-top: 30px;">
-            <div>
-              <div class="eyebrow">Notes</div>
-              <h2>Course timing and essential notes.</h2>
-            </div>
+          <div class="subsection-head">
+            <div class="eyebrow">Notes</div>
+            <h3>Format, pace, and studio expectations.</h3>
           </div>
 
           <div class="notes-grid">
@@ -1219,8 +2399,9 @@
           <div class="section-header">
             <div>
               <div class="eyebrow">Sessions</div>
-              <h2>A 12-session roadmap from foundations to final delivery.</h2>
+              <h2>Twelve sessions from first principles to finished systems.</h2>
             </div>
+            <div class="section-meta">Sessions / 02</div>
           </div>
 
           <div class="sessions-layout">
@@ -1361,33 +2542,50 @@
               <div class="eyebrow">Showcase</div>
               <h2>A dedicated space for future examples and course-made results.</h2>
             </div>
-            <div class="section-copy">This tab is prepared for future visuals, student outputs, rendered scenes, videos, and before-and-after examples.</div>
+            <div class="section-copy">A curated gallery for future student work, cinematic renders, production tests, and before-and-after transformations from the studio.</div>
+            <div class="section-meta">Showcase / 03</div>
           </div>
 
           <div class="register-layout">
             <article class="register-card register-preview">
-              <div class="mini-badge">Prepared Section</div>
+              <div class="mini-badge">Curated Gallery</div>
               <div>
-                <h3>Examples will appear here</h3>
+                <h3>Future results will be presented like finished case studies.</h3>
                 <div class="register-note">
-                  Use this space later for image generations, architectural renders, animation previews, AI-assisted web examples, 3D results, or class outcomes.
+                  The showcase is reserved for work that demonstrates the course standard: atmosphere studies, design iterations, motion outputs, textured 3D assets, and AI-assisted digital products.
                 </div>
               </div>
-              <div class="body-copy">The layout is ready for media cards, preview thumbnails, linked case studies, or embedded demos.</div>
+              <ul class="showcase-list">
+                <li>Before-and-after design transformations</li>
+                <li>Architectural image and video studies</li>
+                <li>3D experiments translated from 2D references</li>
+                <li>Course-built websites, tools, and creative systems</li>
+              </ul>
             </article>
 
             <article class="register-card register-panel">
-              <div class="field">
-                <label>Placeholder block</label>
-                <input type="text" placeholder="Future media category" disabled />
+              <div>
+                <div class="mini-kicker">Planned collection</div>
+                <h3>What this gallery will include</h3>
+                <div class="body-copy">Each entry is intended to read like an exhibit panel rather than a random media dump, so visitors can quickly understand the quality and range of outcomes.</div>
               </div>
-              <div class="field">
-                <label>Content note</label>
-                <textarea placeholder="Future examples, showcase copy, or media descriptions will go here" disabled></textarea>
+              <div class="exhibit-stack">
+                <div class="exhibit-card">
+                  <strong>Visual stories</strong>
+                  Render sets, material explorations, and spatial mood sequences.
+                </div>
+                <div class="exhibit-card">
+                  <strong>Workflow highlights</strong>
+                  Modular ComfyUI setups, enhancement chains, and automation systems.
+                </div>
+                <div class="exhibit-card">
+                  <strong>Cross-medium output</strong>
+                  Motion studies, 3D assets, and AI-assisted website experiments.
+                </div>
               </div>
               <div class="button-row">
-                <button class="button primary" type="button">Showcase Coming Soon</button>
-                <button class="button" type="button">Add Examples Later</button>
+                <button class="button primary" type="button">Showcase In Progress</button>
+                <button class="button" type="button">Curate Examples</button>
               </div>
             </article>
           </div>
@@ -1403,6 +2601,7 @@
               <div class="eyebrow">Enroll</div>
               <h2>Enroll and secure your seat.</h2>
             </div>
+            <div class="section-meta">Register / 04</div>
           </div>
 
           <div class="register-layout">
@@ -1410,7 +2609,7 @@
               <div class="mini-badge">Early Bird</div>
               <div class="pricing-block">
                 <div class="pricing-heading">
-                  <h3>Early Enrollment Offer</h3>
+                  <h3>Reserve a place in the first cohort.</h3>
                   <div class="pricing-meta">
                     <div class="pricing-pill">15% Off</div>
                     <div class="pricing-pill">First 10 Seats</div>
@@ -1421,7 +2620,7 @@
                   <div class="price-original">7,999 EGP</div>
                 </div>
                 <div class="register-note">
-                  Join the course for 6,799 EGP instead of 7,999 EGP. This early bird offer is available for the first 10 seats only.
+                  The early enrollment rate is reserved for the first ten participants and is designed for serious creatives who want guided practice, repeatable systems, and portfolio-worthy outcomes.
                 </div>
                 <ul class="pricing-includes">
                   <li>12 guided sessions across foundations, workflows, prompting, and production.</li>
@@ -1433,21 +2632,36 @@
             </article>
 
             <article class="register-card register-panel">
-              <div class="field">
-                <label for="name">Full name</label>
-                <input id="name" type="text" placeholder="Your name" disabled />
+              <div>
+                <div class="mini-kicker">Enrollment notes</div>
+                <h3>Who this cohort is built for</h3>
+                <div class="body-copy">This format suits designers, architects, visualization specialists, artists, and technically curious creatives who want practical command over the tools rather than surface-level prompting.</div>
               </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" type="email" placeholder="name@example.com" disabled />
+              <div class="enroll-facts">
+                <div class="fact-row">
+                  <strong>Schedule</strong>
+                  12 weeks, one day per week, three hours per session.
+                </div>
+                <div class="fact-row">
+                  <strong>Readiness</strong>
+                  Best suited for learners comfortable with software interfaces and file-based workflows.
+                </div>
+                <div class="fact-row">
+                  <strong>Outcome</strong>
+                  Leave with reusable workflows, a stronger creative process, and a final project that connects concept to delivery.
+                </div>
               </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea id="message" placeholder="Ask about enrollment, availability, or payment details" disabled></textarea>
+              <ul class="detail-list">
+                <li>Priority enrollment is limited to preserve feedback quality.</li>
+                <li>Topics can be calibrated to the group skill level.</li>
+                <li>Suitable for individual creatives and studio teams.</li>
+              </ul>
+              <div class="contact-note">
+                Use this panel as the direct invitation point for enrollment, waitlist management, or private inquiries about fit, availability, and payment terms.
               </div>
               <div class="button-row">
-                <button class="button primary" type="button">Enroll Now</button>
-                <button class="button" type="button">Ask About Availability</button>
+                <button class="button primary" type="button">Reserve Your Seat</button>
+                <button class="button" type="button">Request Details</button>
               </div>
             </article>
           </div>
@@ -1461,17 +2675,21 @@
   <script>
     const tabs = Array.from(document.querySelectorAll('.tab'));
     const panels = Array.from(document.querySelectorAll('.panel'));
-    const panelAnimationTargets = '.section-header, .overview-grid > *, .stats-grid > *, .notes-grid > *, .session-grid > *, .register-layout > *';
+    let currentPanel = document.querySelector('.panel.active');
 
     panels.forEach((panel) => {
-      const targets = Array.from(panel.querySelectorAll(panelAnimationTargets));
-      targets.forEach((target, index) => {
-        target.style.setProperty('--stagger-index', index);
+      panel.addEventListener('animationend', (event) => {
+        if (event.animationName === 'panelIn') {
+          panel.classList.remove('panel-enter');
+        }
       });
     });
 
     function activatePanel(panelName) {
-      let activePanel = null;
+      const nextPanel = document.getElementById(`panel-${panelName}`);
+      if (!nextPanel || nextPanel === currentPanel) {
+        return;
+      }
 
       tabs.forEach((tab) => {
         const isActive = tab.dataset.panel === panelName;
@@ -1479,20 +2697,18 @@
         tab.setAttribute('aria-selected', String(isActive));
       });
 
-      panels.forEach((panel) => {
-        const isActive = panel.id === `panel-${panelName}`;
-        panel.classList.toggle('active', isActive);
-        panel.classList.remove('panel-enter');
-
-        if (isActive) {
-          activePanel = panel;
-        }
-      });
-
-      if (activePanel) {
-        void activePanel.offsetWidth;
-        activePanel.classList.add('panel-enter');
+      if (currentPanel) {
+        currentPanel.classList.remove('active', 'panel-enter');
       }
+
+      nextPanel.classList.remove('panel-enter');
+      nextPanel.classList.add('active');
+
+      window.requestAnimationFrame(() => {
+        nextPanel.classList.add('active');
+        nextPanel.classList.add('panel-enter');
+        currentPanel = nextPanel;
+      });
     }
 
     tabs.forEach((tab) => {
@@ -1503,34 +2719,6 @@
     if (defaultTab) {
       activatePanel(defaultTab.dataset.panel);
     }
-
-    const cursor = document.querySelector('.cursor');
-    const ring = document.querySelector('.cursor-ring');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-
-    window.addEventListener('mousemove', (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-      cursor.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
-    });
-
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
-      ring.style.transform = `translate(${ringX - 21}px, ${ringY - 21}px)`;
-      requestAnimationFrame(animateRing);
-    };
-
-    animateRing();
-
-    const interactiveElements = document.querySelectorAll('button, .session-card, .content-card, .note-card, .register-card, .pill, .visual-card');
-    interactiveElements.forEach((element) => {
-      element.addEventListener('mouseenter', () => ring.classList.add('active'));
-      element.addEventListener('mouseleave', () => ring.classList.remove('active'));
-    });
 
     document.getElementById('scroll-up').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
