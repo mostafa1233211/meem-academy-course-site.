@@ -189,7 +189,7 @@ function createObjectivesSlide() {
     'Build reusable custom AI workflows for repeated design tasks.',
     'Rapidly iterate across styles, materials, mood, and lighting.',
     'Animate architectural spaces and create cinematic motion outputs.',
-    'Generate 3D base meshes from 2D concepts and bridge into Rhino or Blender.',
+    'From builder to expert mastering complex ComfyUI pipelines and automation systems.',
     'Combine ComfyUI with Krita, plugins, and zero-code web or app development flows.'
   ], 6.9, 3.08, 5.2, 3.3, 10.9);
 
@@ -279,12 +279,12 @@ function createOutlineSlide() {
   });
 
   const sessions = [
-    ['SESSION 1', 'AI Foundations', ['AI terminology and useful websites', 'What is ComfyUI?']],
-    ['SESSION 2', 'Setup & Basic Workflows', ['Download and install ComfyUI', 'Interface overview', 'Simple text-to-image workflow', 'Image-to-image workflow']],
+    ['SESSION 1', 'AI Foundations & ComfyUI setup', ['AI terminology and useful websites', 'What is ComfyUI?', 'Download and install ComfyUI']],
+    ['SESSION 2', 'Comfy interface & Basic Workflows', ['Interface overview', 'Simple text-to-image workflow', 'Image-to-image workflow']],
     ['SESSION 3', 'Prompting & Models', ['Prompting instructions', 'Ollama, Florence, Qwen VL, AI Studio', 'Model types: SDXL, Flux, Qwen Image, Z-Image']],
     ['SESSION 4', 'ControlNet & LoRA Workflows', ['Overview of ControlNet and IP Adapter', 'Using LoRAs', 'LoRA training'], 'Task: Train your own LoRA'],
-    ['SESSION 5', 'Enhancement Pipeline', ['Segmentation and autodetection', 'Enhancing full images and selected parts', 'Upscaling'], 'Task: Execute a full image enhancement pipeline'],
-    ['SESSION 6', 'Inpainting & Design Iteration', ['Inpainting workflows', 'Image editing models', 'Differences between normal and edit-specific inpainting'], 'Task: Update materials, context, people, objects, and atmosphere'],
+    ['SESSION 5', 'Inpainting & Design Iteration', ['Inpainting workflows', 'Image editing models', 'Differences between normal and edit-specific inpainting'], 'Task: Update materials, context, people, objects, and atmosphere'],
+    ['SESSION 6', 'Enhancement Pipeline', ['Segmentation and autodetection', 'Enhancing full images and selected parts', 'Upscaling'], 'Task: Execute a full image enhancement pipeline'],
     ['SESSION 7', 'Krita Integration', ['Photo manipulation in Photoshop', 'Intro to Krita and AI plugins', 'Generate, upscale, and organize presets', 'Insert ComfyUI workflows and custom parameters in Krita'], 'Task: Deploy a custom ComfyUI workflow within Krita'],
     ['SESSION 8', '3D Generation', ['3D generation in Hunyuan', 'Trellis with textures', '3D models to segments', 'Advanced 3D workflows'], 'Task: Construct a textured 3D asset from a 2D design'],
     ['SESSION 9', 'AI Video Generation', ['Intro to local AI video generation', 'Online video pipeline'], 'Task: Generate a professional cinematic animation'],

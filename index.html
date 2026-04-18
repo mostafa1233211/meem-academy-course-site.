@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ComfyUI Generative AI Course by MeeM Studio. Advanced workflows and practical AI tools.">
+  <meta name="description"
+    content="ComfyUI Generative AI Course by MeeM Studio. Advanced workflows and practical AI tools.">
   <title>ComfyUI Generative AI Course</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=block" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=block"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0d14;
@@ -37,6 +41,7 @@
 
     html {
       scroll-behavior: smooth;
+      height: 100%;
     }
 
     body {
@@ -60,8 +65,7 @@
     button,
     input,
     textarea,
-    select {
-    }
+    select {}
 
     .cursor,
     .cursor-ring {
@@ -99,12 +103,7 @@
     }
 
     .scroll-controls {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      display: grid;
-      gap: 10px;
-      z-index: 120;
+      display: none;
     }
 
     .scroll-button {
@@ -137,6 +136,8 @@
       margin: 0 auto;
       padding: 12px 12px 40px;
     }
+
+
 
     .topbar {
       position: sticky;
@@ -255,8 +256,9 @@
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
       backdrop-filter: blur(24px);
       box-shadow: var(--shadow);
-      overflow: hidden;
+      overflow: clip;
     }
+
 
     .hero-frame::before,
     .section-shell::before {
@@ -405,9 +407,22 @@
       animation: pulseFloat 4.2s ease-in-out infinite;
     }
 
-    .visual-card .signal-a { top: 22%; left: 21%; }
-    .visual-card .signal-b { top: 31%; right: 23%; animation-delay: 0.8s; }
-    .visual-card .signal-c { bottom: 24%; left: 31%; animation-delay: 1.6s; }
+    .visual-card .signal-a {
+      top: 22%;
+      left: 21%;
+    }
+
+    .visual-card .signal-b {
+      top: 31%;
+      right: 23%;
+      animation-delay: 0.8s;
+    }
+
+    .visual-card .signal-c {
+      bottom: 24%;
+      left: 31%;
+      animation-delay: 1.6s;
+    }
 
     .visual-card::after {
       content: "";
@@ -461,10 +476,25 @@
       z-index: 2;
     }
 
-    .label-a { top: 14%; left: 10%; }
-    .label-b { top: 14%; right: 9%; }
-    .label-c { bottom: 20%; left: 8%; }
-    .label-d { bottom: 11%; right: 10%; }
+    .label-a {
+      top: 14%;
+      left: 10%;
+    }
+
+    .label-b {
+      top: 14%;
+      right: 9%;
+    }
+
+    .label-c {
+      bottom: 20%;
+      left: 8%;
+    }
+
+    .label-d {
+      bottom: 11%;
+      right: 10%;
+    }
 
     .tool-chip {
       position: absolute;
@@ -507,12 +537,40 @@
       text-transform: uppercase;
     }
 
-    .tool-e { top: 30px; left: 32%; }
-    .tool-f { top: 34px; right: 30%; animation-delay: 0.8s; }
-    .tool-g { top: 46%; left: 26px; animation-delay: 1.6s; }
-    .tool-h { top: 46%; right: 18px; animation-delay: 2.2s; }
-    .tool-i { bottom: 26px; left: 25%; animation-delay: 1.2s; }
-    .tool-j { bottom: 22px; right: 23%; animation-delay: 2.8s; }
+    .tool-e {
+      top: 30px;
+      left: 32%;
+    }
+
+    .tool-f {
+      top: 34px;
+      right: 30%;
+      animation-delay: 0.8s;
+    }
+
+    .tool-g {
+      top: 46%;
+      left: 26px;
+      animation-delay: 1.6s;
+    }
+
+    .tool-h {
+      top: 46%;
+      right: 18px;
+      animation-delay: 2.2s;
+    }
+
+    .tool-i {
+      bottom: 26px;
+      left: 25%;
+      animation-delay: 1.2s;
+    }
+
+    .tool-j {
+      bottom: 22px;
+      right: 23%;
+      animation-delay: 2.8s;
+    }
 
     .floating-card {
       padding: 22px;
@@ -763,11 +821,19 @@
 
     .register-layout {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 18px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .register-layout>* {
+      width: 100%;
+      justify-self: stretch;
     }
 
     .register-preview {
+      width: 100%;
       min-height: 360px;
       background:
         radial-gradient(circle at 20% 20%, rgba(185, 173, 255, 0.1), transparent 30%),
@@ -865,6 +931,420 @@
       box-shadow: 0 0 16px rgba(138, 126, 168, 0.35);
     }
 
+    .register-layout--enroll {
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      align-items: stretch;
+    }
+
+    .register-spotlight {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at top left, rgba(138, 126, 168, 0.16), transparent 34%),
+        radial-gradient(circle at 78% 16%, rgba(138, 126, 168, 0.15), transparent 28%),
+        linear-gradient(160deg, rgba(16, 13, 24, 0.96), rgba(9, 8, 15, 0.98));
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .register-spotlight::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -80px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 126, 168, 0.22), transparent 68%);
+      pointer-events: none;
+      filter: blur(10px);
+    }
+
+    .register-spotlight .pricing-block,
+    .enroll-sidebar {
+      position: relative;
+      z-index: 1;
+    }
+
+    .register-spotlight h3 {
+      max-width: 9ch;
+      margin-bottom: 0;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .enroll-summary {
+      max-width: 50ch;
+      color: rgba(237, 232, 245, 0.84);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .enroll-facts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .enroll-fact {
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .enroll-fact-label {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(196, 189, 212, 0.72);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .enroll-fact-value {
+      color: var(--text);
+      font-family: "Sora", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .enroll-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: -2px;
+      color: rgba(196, 189, 212, 0.92);
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .enroll-highlight span::after {
+      content: "•";
+      margin-left: 10px;
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .enroll-highlight span:last-child::after {
+      content: none;
+      margin: 0;
+    }
+
+    .enroll-sidebar {
+      display: grid;
+      gap: 18px;
+      background: linear-gradient(180deg, rgba(16, 13, 24, 0.96), rgba(9, 8, 15, 0.98));
+    }
+
+    .enroll-price-card {
+      display: grid;
+      gap: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .enroll-price-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 14px;
+    }
+
+    .enroll-price-head p,
+    .enroll-cta-copy,
+    .enroll-whatsapp-note,
+    .step-hint,
+    .enroll-form-error,
+    .enroll-submit-note {
+      margin: 0;
+      color: rgba(196, 189, 212, 0.78);
+      line-height: 1.7;
+    }
+
+    .enroll-price-head p {
+      font-size: 0.95rem;
+    }
+
+    .enroll-price-stack {
+      display: grid;
+      gap: 6px;
+    }
+
+    .enroll-cta-card {
+      display: grid;
+      gap: 14px;
+      padding: 18px 20px;
+      border: 1px solid rgba(138, 126, 168, 0.14);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(138, 126, 168, 0.1), rgba(255, 255, 255, 0.02));
+    }
+
+    .enroll-cta-card .button-row {
+      justify-content: stretch;
+    }
+
+    .enroll-cta-card .button-row .button {
+      flex: 1 1 0;
+    }
+
+    .enroll-whatsapp-note {
+      font-size: 0.92rem;
+    }
+
+    .button.secondary-link {
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .enroll-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .enroll-modal[hidden] {
+      display: none;
+    }
+
+    .enroll-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(138, 126, 168, 0.14), transparent 24%),
+        radial-gradient(circle at 80% 80%, rgba(138, 126, 168, 0.12), transparent 28%),
+        rgba(4, 4, 9, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .enroll-modal-dialog {
+      position: relative;
+      width: min(100%, 920px);
+      max-height: min(90vh, 860px);
+      overflow: auto;
+      padding: 34px;
+      border-radius: 30px;
+      border: 1px solid rgba(164, 144, 194, 0.2);
+      background: linear-gradient(180deg, rgba(20, 18, 16, 0.98), rgba(12, 11, 14, 0.98));
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.48);
+    }
+
+    .enroll-modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(241, 234, 224, 0.86);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .enroll-modal-close:hover,
+    .enroll-modal-close:focus-visible {
+      background: rgba(255, 255, 255, 0.08);
+      outline: none;
+    }
+
+    .enroll-modal-shell {
+      display: grid;
+      gap: 28px;
+    }
+
+    .enroll-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-right: 56px;
+      color: rgba(237, 232, 245, 0.86);
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .enroll-progress-track {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(138, 126, 168, 0.22);
+    }
+
+    .enroll-progress-bar {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(138, 126, 168, 1), rgba(74, 78, 143, 1));
+      transition: width 220ms ease;
+    }
+
+    .enroll-modal-step {
+      display: none;
+      gap: 18px;
+    }
+
+    .enroll-modal-step.active {
+      display: grid;
+    }
+
+    .enroll-modal-step h3 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .enroll-modal-step-copy {
+      display: grid;
+      gap: 10px;
+      max-width: 58ch;
+    }
+
+    .enroll-modal-step-copy p {
+      margin: 0;
+      color: rgba(196, 189, 212, 0.82);
+      font-size: 1.06rem;
+      line-height: 1.8;
+    }
+
+    .enroll-form-control {
+      width: 100%;
+      min-height: 64px;
+      border: 1px solid rgba(138, 126, 168, 0.42);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      padding: 18px 20px;
+      font: inherit;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .enroll-form-control::placeholder {
+      color: rgba(196, 189, 212, 0.58);
+    }
+
+    .enroll-form-control:focus {
+      outline: none;
+      border-color: rgba(138, 126, 168, 0.9);
+      box-shadow: 0 0 0 4px rgba(138, 126, 168, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    textarea.enroll-form-control {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .step-hint {
+      font-size: 0.92rem;
+    }
+
+    .step-hint kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(237, 232, 245, 0.92);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .enroll-form-error {
+      min-height: 1.6em;
+      color: #ffb6a0;
+      font-size: 0.94rem;
+    }
+
+    .enroll-modal-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .enroll-modal-actions-end {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .button.modal-ghost {
+      border-color: rgba(138, 126, 168, 0.26);
+      background: transparent;
+      color: rgba(237, 232, 245, 0.92);
+      box-shadow: none;
+    }
+
+    .button.modal-ghost[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .button.modal-primary {
+      min-width: 164px;
+      border-color: rgba(164, 144, 194, 0.28);
+      background: linear-gradient(135deg, rgba(90, 98, 143, 0.62), rgba(138, 126, 168, 0.54));
+      color: #f6f2fb;
+      box-shadow: none;
+    }
+
+    .button.modal-primary:hover,
+    .button.modal-primary:focus-visible {
+      background: linear-gradient(135deg, rgba(90, 98, 143, 0.76), rgba(138, 126, 168, 0.68));
+    }
+
+    .enroll-submit-note {
+      min-height: 1.6em;
+      font-size: 0.92rem;
+      text-align: right;
+    }
+
+    .enroll-modal-success {
+      display: none;
+      gap: 14px;
+      padding: 26px;
+      border: 1px solid rgba(164, 144, 194, 0.18);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(138, 126, 168, 0.09), rgba(255, 255, 255, 0.02));
+    }
+
+    .enroll-modal-success.active {
+      display: grid;
+    }
+
+    .enroll-modal-success h3,
+    .enroll-modal-success p {
+      margin: 0;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
     .pricing-includes {
       display: grid;
       gap: 10px;
@@ -937,6 +1417,7 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .button {
@@ -969,10 +1450,21 @@
       animation: rise 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    .delay-1 { animation-delay: 80ms; }
-    .delay-2 { animation-delay: 160ms; }
-    .delay-3 { animation-delay: 240ms; }
-    .delay-4 { animation-delay: 320ms; }
+    .delay-1 {
+      animation-delay: 80ms;
+    }
+
+    .delay-2 {
+      animation-delay: 160ms;
+    }
+
+    .delay-3 {
+      animation-delay: 240ms;
+    }
+
+    .delay-4 {
+      animation-delay: 320ms;
+    }
 
     @keyframes rise {
       to {
@@ -986,6 +1478,7 @@
         opacity: 0;
         transform: translateY(12px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -998,6 +1491,7 @@
         transform: translateY(22px) scale(0.985);
         filter: blur(8px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1006,26 +1500,31 @@
     }
 
     @keyframes pulseFloat {
+
       0%,
       100% {
         transform: translateY(0px);
       }
+
       50% {
         transform: translateY(-6px);
       }
     }
 
     .panel.active.panel-enter .section-header,
-    .panel.active.panel-enter .overview-grid > *,
-    .panel.active.panel-enter .stats-grid > *,
-    .panel.active.panel-enter .notes-grid > *,
-    .panel.active.panel-enter .session-grid > *,
-    .panel.active.panel-enter .register-layout > * {
+    .panel.active.panel-enter .overview-grid>*,
+    .panel.active.panel-enter .stats-grid>*,
+    .panel.active.panel-enter .notes-grid>*,
+    .panel.active.panel-enter .session-grid>*,
+    .panel.active.panel-enter .register-layout>*,
+    .panel.active.panel-enter .showcase-stage>*,
+    .panel.active.panel-enter .showcase-frame>* {
       animation: glassEnter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-delay: calc(var(--stagger-index, 0) * 65ms);
     }
 
     @media (max-width: 1080px) {
+
       .hero,
       .overview-grid,
       .register-layout,
@@ -1058,6 +1557,35 @@
 
       h1 {
         max-width: none;
+      }
+
+      .enroll-progress-meta {
+        margin-right: 0;
+      }
+
+      .enroll-modal-dialog {
+        padding: 26px 22px;
+        border-radius: 26px;
+      }
+
+      .enroll-modal-step h3 {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+      }
+
+      .enroll-modal-actions,
+      .enroll-modal-actions-end {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .enroll-modal-actions-end {
+        margin-left: 0;
+      }
+
+      .enroll-modal-actions .button,
+      .enroll-modal-actions-end .button {
+        width: 100%;
       }
     }
 
@@ -1155,9 +1683,9 @@
       background: rgba(138, 126, 168, 0.08);
     }
 
-    a:hover ~ .cursor,
-    button:hover ~ .cursor,
-    .tab:hover ~ .cursor {
+    a:hover~.cursor,
+    button:hover~.cursor,
+    .tab:hover~.cursor {
       width: 12px;
       height: 12px;
     }
@@ -1179,12 +1707,12 @@
       font-size: 1.35rem;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: 
+      box-shadow:
         0 8px 24px rgba(0, 0, 0, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      transition: 
-        transform 180ms ease, 
-        border-color 180ms ease, 
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
         background 180ms ease,
         box-shadow 180ms ease;
     }
@@ -1195,7 +1723,7 @@
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(16, 15, 24, 0.92);
       color: var(--text);
-      box-shadow: 
+      box-shadow:
         0 12px 32px rgba(0, 0, 0, 0.32),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
@@ -1213,7 +1741,7 @@
       background: rgba(14, 13, 20, 0.78);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
@@ -1324,7 +1852,7 @@
       background: linear-gradient(135deg, rgba(12, 10, 18, 0.82), rgba(8, 6, 14, 0.88));
       backdrop-filter: blur(26px);
       -webkit-backdrop-filter: blur(26px);
-      box-shadow: 
+      box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.07);
     }
@@ -1512,7 +2040,7 @@
       margin-top: 16px;
     }
 
-    .hero-copy p + p {
+    .hero-copy p+p {
       color: rgba(138, 126, 168, 0.6);
     }
 
@@ -1547,7 +2075,7 @@
       border-radius: 28px;
       border: var(--glass-border);
       background: linear-gradient(135deg, var(--card-dark), rgba(12, 10, 20, 0.92));
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         0 2px 8px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -1674,7 +2202,7 @@
       border: var(--glass-border);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-      box-shadow: 
+      box-shadow:
         0 6px 28px rgba(0, 0, 0, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
       transition:
@@ -1688,7 +2216,7 @@
     .floating-card:hover {
       transform: translateY(-4px);
       border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 
+      box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.35),
         0 4px 12px rgba(138, 126, 168, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -1714,11 +2242,12 @@
     }
 
     .panel-credit {
-      margin-top: 30px;
+      margin-top: 0;
       color: rgba(138, 126, 168, 0.4);
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.22em;
+      align-self: end;
     }
 
     .section-header {
@@ -1763,7 +2292,7 @@
     .session-card,
     .register-card,
     .floating-card {
-      contain: layout paint;
+      contain: layout;
     }
 
     .section-meta {
@@ -1808,7 +2337,7 @@
       border: var(--glass-border);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 
+      box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
@@ -1863,7 +2392,7 @@
       border: var(--glass-border);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 
+      box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
@@ -1886,7 +2415,7 @@
       border: var(--glass-border);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-      box-shadow: 
+      box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
       transition:
@@ -1900,7 +2429,7 @@
     .stat-card:hover {
       transform: translateY(-3px);
       border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.32),
         0 2px 8px rgba(138, 126, 168, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -1933,7 +2462,7 @@
       border: var(--glass-border);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 
+      box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.26),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transition:
@@ -1956,7 +2485,7 @@
       transform: translateY(-4px);
       border-color: rgba(255, 255, 255, 0.18);
       background: linear-gradient(135deg, rgba(138, 126, 168, 0.08), rgba(12, 10, 20, 0.92));
-      box-shadow: 
+      box-shadow:
         0 10px 36px rgba(0, 0, 0, 0.32),
         0 2px 10px rgba(138, 126, 168, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -2087,7 +2616,7 @@
     }
 
     .register-layout {
-      grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .register-preview {
@@ -2150,7 +2679,19 @@
 
     .register-panel {
       gap: 18px;
-      background: linear-gradient(180deg, rgba(13, 13, 24, 0.96), rgba(8, 8, 17, 0.94));
+      background: linear-gradient(180deg, rgba(14, 13, 25, 0.97), rgba(8, 8, 17, 0.95));
+    }
+
+    .register-panel-intro {
+      display: grid;
+      gap: 10px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(138, 126, 168, 0.12);
+    }
+
+    .register-panel .body-copy {
+      max-width: 50ch;
+      color: rgba(230, 228, 239, 0.78);
     }
 
     .showcase-list,
@@ -2162,37 +2703,477 @@
       gap: 12px;
     }
 
+    .showcase-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      align-items: start;
+    }
+
+    .showcase-pin {
+      position: sticky;
+      top: 108px;
+    }
+
+    .showcase-frame {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 14px;
+      min-height: 720px;
+      padding: 22px 28px 18px;
+      border-radius: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at 20% 16%, rgba(115, 93, 162, 0.16), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(86, 102, 166, 0.1), transparent 28%),
+        linear-gradient(180deg, rgba(17, 15, 26, 0.98), rgba(9, 8, 15, 0.98));
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .showcase-frame-head {
+      display: grid;
+      gap: 6px;
+      max-width: 58ch;
+    }
+
+    .showcase-rail-label,
+    .showcase-kicker,
+    .showcase-placeholder-label,
+    .showcase-number,
+    .showcase-step-index {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .showcase-rail-label,
+    .showcase-kicker,
+    .showcase-number,
+    .showcase-step-index {
+      color: rgba(123, 111, 163, 0.9);
+    }
+
+    .showcase-frame-head p,
+    .showcase-placeholder-copy,
+    .showcase-caption,
+    .showcase-step-label {
+      margin: 0;
+      color: rgba(196, 189, 212, 0.72);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .showcase-command-layout {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .showcase-nav {
+      position: relative;
+      display: grid;
+      align-content: start;
+      gap: 2px;
+      padding: 110px 6px 110px 0;
+      overflow-y: auto;
+      scrollbar-width: none;
+      overscroll-behavior: contain;
+      scroll-snap-type: y mandatory;
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 8%, black 22%, black 78%, rgba(0, 0, 0, 0.18) 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 8%, black 22%, black 78%, rgba(0, 0, 0, 0.18) 92%, transparent 100%);
+    }
+
+    .showcase-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+
+
+    .showcase-link {
+      position: relative;
+      z-index: 3;
+      display: block;
+      padding: 4px 6px;
+      border-radius: 8px;
+      border: 0;
+      color: rgba(237, 232, 245, 0.28);
+      text-decoration: none;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.22rem;
+      font-weight: 600;
+      line-height: 1.15;
+      background: transparent;
+      scroll-snap-align: center;
+      transition:
+        transform 420ms cubic-bezier(0.2, 1.15, 0.3, 1),
+        color 180ms ease,
+        background 180ms ease,
+        opacity 320ms ease,
+        filter 320ms ease;
+      transform: translateX(var(--roller-x, 0px)) scale(var(--roller-scale, 1));
+      opacity: var(--roller-opacity, 0.42);
+      filter: blur(var(--roller-blur, 0px));
+    }
+
+    .showcase-link:hover,
+    .showcase-link:focus-visible {
+      transform: translateX(2px);
+      color: rgba(237, 232, 245, 0.78);
+      outline: none;
+    }
+
+    .showcase-link.active {
+      color: #ffffff;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      opacity: 1;
+    }
+
+    .showcase-scenes {
+      position: relative;
+      min-height: 500px;
+      padding-bottom: 6px;
+    }
+
+    .showcase-scene {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.96fr);
+      gap: 22px;
+      align-items: stretch;
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      filter: blur(8px);
+      pointer-events: none;
+      transition:
+        opacity 280ms ease,
+        transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 280ms ease;
+    }
+
+    .showcase-scene.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+
+    .showcase-copy-block {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      min-height: 0;
+      padding-top: 18px;
+    }
+
+    .showcase-scene-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .showcase-scene-head h3 {
+      position: relative;
+      margin: 8px 0 0;
+      padding-left: 34px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.1rem, 6.2vw, 4.5rem);
+      font-weight: 600;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: #f3edf7;
+      text-transform: lowercase;
+    }
+
+    .showcase-scene-head h3::before {
+      content: "/";
+      position: absolute;
+      left: 0;
+      top: 0.06em;
+      color: rgba(123, 111, 163, 0.9);
+      font-size: 0.92em;
+      font-weight: 500;
+    }
+
+    .showcase-number {
+      flex: 0 0 auto;
+      padding-top: 8px;
+    }
+
+    .showcase-copy-block .body-copy {
+      margin: 0;
+      max-width: 35ch;
+      color: rgba(228, 222, 238, 0.82);
+      font-size: 0.94rem;
+    }
+
+    .showcase-copy-block .detail-list {
+      gap: 10px;
+    }
+
+    .showcase-copy-block .detail-list li {
+      color: rgba(219, 212, 231, 0.86);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .showcase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .showcase-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(237, 232, 245, 0.72);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .showcase-visual-column {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding-top: 8px;
+    }
+
+    .showcase-placeholder {
+      position: relative;
+      display: grid;
+      align-content: end;
+      min-height: 360px;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(129, 110, 170, 0.14), transparent 30%),
+        radial-gradient(circle at 82% 14%, rgba(115, 121, 183, 0.08), transparent 26%),
+        linear-gradient(160deg, rgba(26, 23, 36, 0.96), rgba(15, 13, 23, 0.94));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .showcase-placeholder::before,
+    .showcase-placeholder::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .showcase-placeholder::before {
+      inset: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .showcase-placeholder::after {
+      top: -16px;
+      right: 35%;
+      width: 2px;
+      height: calc(100% + 32px);
+      background: linear-gradient(180deg, transparent, rgba(123, 111, 163, 0.92) 14%, rgba(123, 111, 163, 0.92) 86%, transparent);
+      transform: rotate(8deg);
+      transform-origin: center;
+      opacity: 0.9;
+    }
+
+    .showcase-placeholder .showcase-placeholder-copy::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: -138px;
+      width: min(66%, 276px);
+      height: 206px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.14);
+    }
+
+    .showcase-placeholder .showcase-placeholder-copy::after {
+      content: "";
+      position: absolute;
+      left: 38px;
+      top: -112px;
+      width: min(50%, 212px);
+      height: 128px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .showcase-placeholder-lines {
+      position: absolute;
+      inset: 90px 46px auto auto;
+      width: min(48%, 220px);
+      display: grid;
+      gap: 10px;
+      opacity: 0.52;
+    }
+
+    .showcase-placeholder-lines span {
+      display: block;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+    }
+
+    .showcase-placeholder-lines span:nth-child(2) {
+      width: 82%;
+    }
+
+    .showcase-placeholder-lines span:nth-child(3) {
+      width: 64%;
+    }
+
+    .showcase-placeholder-copy {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      max-width: 28ch;
+      color: rgba(215, 208, 228, 0.72);
+    }
+
+    .showcase-placeholder-copy strong {
+      display: block;
+      font-family: "Sora", sans-serif;
+      font-size: 1.24rem;
+      line-height: 1.08;
+      color: #f3edf7;
+    }
+
+    .showcase-placeholder-label {
+      color: rgba(215, 208, 228, 0.56);
+    }
+
+    .showcase-caption {
+      padding-left: 4px;
+      font-size: 0.82rem;
+      color: rgba(196, 189, 212, 0.6);
+      line-height: 1.55;
+    }
+
+    .showcase-steps {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+      width: 1px;
+      opacity: 0;
+      pointer-events: auto;
+    }
+
+    .showcase-steps::-webkit-scrollbar {
+      display: none;
+    }
+
+    .showcase-step {
+      min-height: 72%;
+      scroll-margin-top: 0;
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .showcase-step-inner {
+      display: none;
+    }
+
+    .showcase-step-label {
+      font-size: 0.84rem;
+    }
+
     .exhibit-stack,
     .enroll-facts {
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .exhibit-card,
     .fact-row {
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(138, 126, 168, 0.04);
+      padding: 14px 0;
+      border-radius: 0;
+      border: 1px solid rgba(138, 126, 168, 0.13);
+      border-left: 0;
+      border-right: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .exhibit-card strong,
     .fact-row strong {
       display: block;
-      margin-bottom: 8px;
-      color: var(--text);
+      margin-bottom: 10px;
+      color: rgba(237, 232, 245, 0.96);
       font-size: 0.82rem;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
     .contact-note {
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: var(--card-soft);
-      color: rgba(138, 126, 168, 0.7);
+      padding-top: 6px;
+      border: 0;
+      border-top: 1px solid rgba(138, 126, 168, 0.12);
+      border-radius: 0;
+      background: transparent;
+      color: rgba(216, 208, 231, 0.7);
       line-height: 1.75;
+    }
+
+    .register-panel .button-row {
+      padding-top: 4px;
+    }
+
+    .register-panel .button {
+      min-height: 50px;
+    }
+
+    .register-panel .button.primary {
+      background: rgba(138, 126, 168, 0.16);
+    }
+
+    .register-panel .button:not(.primary) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .register-panel .button:hover,
+    .register-panel .button:focus-visible {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .register-panel .button.primary:hover,
+    .register-panel .button.primary:focus-visible {
+      background: rgba(138, 126, 168, 0.22);
     }
 
     .button {
@@ -2247,10 +3228,36 @@
       background: rgba(138, 126, 168, 0.14);
     }
 
-    #panel-overview .section-shell { background: rgba(9, 8, 16, 0.94); }
-    #panel-sessions .section-shell { background: rgba(10, 9, 17, 0.94); }
-    #panel-showcase .section-shell { background: rgba(9, 8, 16, 0.95); }
-    #panel-register .section-shell { background: rgba(11, 9, 17, 0.95); }
+    #panel-overview .section-shell {
+      background: rgba(9, 8, 16, 0.94);
+    }
+
+    #panel-sessions .section-shell {
+      background: rgba(10, 9, 17, 0.94);
+    }
+
+    #panel-showcase .section-shell {
+      background: rgba(9, 8, 16, 0.95);
+    }
+
+    #panel-register .section-shell {
+      background: rgba(11, 9, 17, 0.95);
+    }
+
+    #panel-showcase .section-header {
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    #panel-showcase .section-header h2 {
+      font-size: clamp(1.8rem, 2.6vw, 2.7rem);
+      max-width: 14ch;
+    }
+
+    #panel-showcase .section-copy {
+      max-width: 38ch;
+      padding-top: 2px;
+    }
 
     .fade-up {
       transform: translateY(14px);
@@ -2279,10 +3286,21 @@
       animation: rise 900ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
     }
 
-    .delay-1 { animation-delay: 120ms; }
-    .delay-2 { animation-delay: 220ms; }
-    .delay-3 { animation-delay: 320ms; }
-    .delay-4 { animation-delay: 420ms; }
+    .delay-1 {
+      animation-delay: 120ms;
+    }
+
+    .delay-2 {
+      animation-delay: 220ms;
+    }
+
+    .delay-3 {
+      animation-delay: 320ms;
+    }
+
+    .delay-4 {
+      animation-delay: 420ms;
+    }
 
     @keyframes rise {
       from {
@@ -2321,6 +3339,7 @@
     }
 
     @keyframes pulseFloat {
+
       0%,
       100% {
         transform: translateY(0px);
@@ -2354,6 +3373,7 @@
     }
 
     @keyframes centerBreath {
+
       0%,
       100% {
         transform: translate(-50%, -50%) scale(1);
@@ -2395,8 +3415,26 @@
       }
 
       .overview-grid,
-      .register-layout {
+      .register-layout,
+      .showcase-stage {
         grid-template-columns: 1fr;
+      }
+
+      .showcase-pin {
+        position: static;
+      }
+
+      .showcase-frame-head p {
+        max-width: 50ch;
+      }
+
+      .showcase-frame {
+        min-height: 760px;
+        height: clamp(760px, 86vh, 920px);
+      }
+
+      .showcase-step {
+        min-height: 34vh;
       }
 
       .stats-grid,
@@ -2406,6 +3444,7 @@
     }
 
     @media (max-width: 960px) {
+
       html,
       body,
       a,
@@ -2523,6 +3562,43 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .showcase-frame {
+        height: auto;
+        min-height: auto;
+        overflow: visible;
+      }
+
+      .showcase-command-layout,
+      .showcase-scene {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-nav {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+        padding-bottom: 16px;
+        max-height: 260px;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+
+      .showcase-nav::before {
+        display: none;
+      }
+
+      .showcase-scenes {
+        min-height: 720px;
+      }
+
+      .showcase-scene-head {
+        flex-direction: column;
+      }
+
+      .showcase-step {
+        min-height: 28vh;
+        scroll-margin-top: 112px;
+      }
+
       .instructors-grid {
         display: grid;
         flex-direction: row;
@@ -2564,11 +3640,13 @@
       .panel,
       .panel.panel-enter,
       .panel.active.panel-enter .section-header,
-      .panel.active.panel-enter .overview-grid > *,
-      .panel.active.panel-enter .stats-grid > *,
-      .panel.active.panel-enter .notes-grid > *,
-      .panel.active.panel-enter .session-grid > *,
-      .panel.active.panel-enter .register-layout > *,
+      .panel.active.panel-enter .overview-grid>*,
+      .panel.active.panel-enter .stats-grid>*,
+      .panel.active.panel-enter .notes-grid>*,
+      .panel.active.panel-enter .session-grid>*,
+      .panel.active.panel-enter .register-layout>*,
+      .panel.active.panel-enter .showcase-stage>*,
+      .panel.active.panel-enter .showcase-frame>*,
       .visual-center,
       .tool-chip,
       .visual-card .signal-node {
@@ -2633,6 +3711,27 @@
 
       .shell {
         padding: 8px 8px 28px;
+      }
+
+      .showcase-frame {
+        padding: 20px 18px;
+      }
+
+      .showcase-scene-head h3 {
+        font-size: clamp(3rem, 14vw, 4.2rem);
+      }
+
+      .showcase-scenes {
+        min-height: 760px;
+      }
+
+      .showcase-placeholder {
+        min-height: 280px;
+        padding: 18px;
+      }
+
+      .showcase-step {
+        min-height: 22vh;
       }
 
       .topbar {
@@ -2702,6 +3801,10 @@
         grid-template-columns: 1fr;
       }
 
+      .enroll-facts-grid {
+        grid-template-columns: 1fr;
+      }
+
       .instructors-grid {
         display: flex;
         flex-direction: column;
@@ -2716,6 +3819,34 @@
         width: 100%;
         min-height: 48px;
         padding: 14px 18px;
+      }
+
+      .enroll-modal {
+        padding: 12px;
+      }
+
+      .enroll-modal-dialog {
+        max-height: 94vh;
+        padding: 22px 18px;
+      }
+
+      .enroll-modal-close {
+        top: 16px;
+        right: 16px;
+      }
+
+      .enroll-modal-step h3 {
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+      }
+
+      .enroll-form-control {
+        min-height: 58px;
+        padding: 16px 18px;
+        font-size: 1rem;
+      }
+
+      textarea.enroll-form-control {
+        min-height: 150px;
       }
 
       .scroll-controls {
@@ -2746,7 +3877,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: 
+      transition:
         opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
         transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -2759,7 +3890,7 @@
     .reveal-left {
       opacity: 0;
       transform: translateX(-50px);
-      transition: 
+      transition:
         opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
         transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -2772,7 +3903,7 @@
     .reveal-right {
       opacity: 0;
       transform: translateX(50px);
-      transition: 
+      transition:
         opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
         transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -2785,7 +3916,7 @@
     .reveal-scale {
       opacity: 0;
       transform: scale(0.92);
-      transition: 
+      transition:
         opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
         transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -2795,16 +3926,28 @@
       transform: scale(1);
     }
 
-    .reveal-delay-1 { transition-delay: 80ms; }
-    .reveal-delay-2 { transition-delay: 160ms; }
-    .reveal-delay-3 { transition-delay: 240ms; }
-    .reveal-delay-4 { transition-delay: 320ms; }
+    .reveal-delay-1 {
+      transition-delay: 80ms;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 160ms;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 240ms;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 320ms;
+    }
   </style>
 </head>
+
 <body>
   <div class="cursor" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
-  
+
   <div class="scroll-controls" aria-label="Page navigation">
     <button class="scroll-button" id="scroll-up" type="button" aria-label="Scroll to top">↑</button>
     <button class="scroll-button" id="scroll-down" type="button" aria-label="Scroll to bottom">↓</button>
@@ -2813,7 +3956,8 @@
   <div class="shell">
     <nav class="topbar fade-up">
       <div class="brand">
-        <img class="brand-mark" src="assets/logo.png" alt="MeeM Academy logo" width="48" height="48" decoding="async" fetchpriority="high" />
+        <img class="brand-mark" src="assets/logo.png" alt="MeeM Academy logo" width="48" height="48" decoding="async"
+          fetchpriority="high" />
         <div class="brand-copy">
           <div class="brand-kicker">MeeM Academy</div>
           <div class="brand-title">Generative AI course</div>
@@ -2821,10 +3965,14 @@
       </div>
 
       <div class="tabbar" role="tablist" aria-label="Course sections">
-        <button id="overview-tab" class="tab active" role="tab" aria-selected="true" aria-controls="panel-overview" data-panel="overview">Overview</button>
-        <button id="sessions-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-sessions" data-panel="sessions">Sessions</button>
-        <button id="showcase-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-showcase" data-panel="showcase">Showcase</button>
-        <button id="register-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-register" data-panel="register">Enroll</button>
+        <button id="overview-tab" class="tab active" role="tab" aria-selected="true" aria-controls="panel-overview"
+          data-panel="overview">Overview</button>
+        <button id="sessions-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-sessions"
+          data-panel="sessions">Sessions</button>
+        <button id="showcase-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-showcase"
+          data-panel="showcase">Showcase</button>
+        <button id="register-tab" class="tab" role="tab" aria-selected="false" aria-controls="panel-register"
+          data-panel="register">Enroll</button>
       </div>
     </nav>
 
@@ -2839,15 +3987,15 @@
 
             <div class="hero-content">
               <div class="hero-kicker reveal reveal-left">Generative AI Course</div>
-              <h1 class="hero-title reveal reveal-left reveal-delay-1">For creatives who want authorship over AI, not just output.</h1>
+              <h1 class="hero-title reveal reveal-left reveal-delay-1">For creatives who want authorship over AI, not
+                just output.</h1>
               <p class="hero-description reveal reveal-left reveal-delay-2">
-                A 12-week studio for designers, architects, visualizers, and artists building real command of image generation, 3D workflows, motion, automation, and AI-assisted web creation.
+                A 12-week studio for designers, architects, visualizers, and artists building real command of image
+                generation, 3D workflows, motion, automation, and AI-assisted web creation.
               </p>
               <div class="hero-meta reveal reveal-left reveal-delay-3">
                 <div class="pill">12 Weeks</div>
                 <div class="pill">36 Guided Hours</div>
-                <div class="pill">Studio Cohort</div>
-                <div class="pill">Final Pipeline</div>
               </div>
               <div class="hero-actions reveal reveal-left reveal-delay-4">
                 <button class="button hero-button" type="button" data-panel-target="register">Enroll</button>
@@ -2872,8 +4020,10 @@
                 <li>People who tried ComfyUI and felt lost or overwhelmed.</li>
                 <li>Total beginners to node-based systems who want a clear mental model.</li>
                 <li>Creatives moving beyond drag-and-drop AI tools into reusable pipelines.</li>
-                <li>Artists, makers, and automation-focused teams exploring reproducible image and video generation.</li>
-                <li>Architects, interior designers, landscape architects, graphic designers, 3D artists, product designers, freelancers, and studios.</li>
+                <li>Artists, makers, and automation-focused teams exploring reproducible image and video generation.
+                </li>
+                <li>Architects, interior designers, landscape architects, graphic designers, 3D artists, product
+                  designers, freelancers, and studios.</li>
               </ul>
             </article>
 
@@ -2884,7 +4034,7 @@
                 <li>Build reusable custom AI workflows for repeated design tasks.</li>
                 <li>Rapidly iterate across styles, materials, mood, and lighting.</li>
                 <li>Animate architectural spaces and create cinematic motion outputs.</li>
-                <li>Generate 3D base meshes from 2D concepts and bridge into Rhino or Blender.</li>
+                <li>From builder to expert mastering complex ComfyUI pipelines and automation systems.</li>
                 <li>Combine ComfyUI with Krita, plugins, and zero-code web or app development flows.</li>
               </ul>
             </article>
@@ -2919,20 +4069,28 @@
                 <h3>Mostafa Mohamed</h3>
                 <div class="instructor-role">AI Specialist, 3D Visualizer</div>
                 <p class="instructor-bio">
-                  Mostafa Mohamed is an AI Workflow Specialist focused on building systems, design, and visual production workflows for companies, with full-time experience at Stylus. He brings 2 years of hands-on work with ComfyUI, open and closed generative AI tools, and has contributed to projects with DSC, Emaar Masr, and Any Design Studio. He was also one of the former founders of Any More, an AI lab.
+                  Mostafa Mohamed is an AI Workflow Specialist focused on building systems, design, and visual
+                  production workflows for companies, with full-time experience at Stylus. He brings 2 years of hands-on
+                  work with ComfyUI, open and closed generative AI tools, and has contributed to projects with DSC,
+                  Emaar Masr, and Any Design Studio. He was also one of the former founders of Any More, an AI lab.
                 </p>
               </div>
             </article>
 
             <article class="instructor-card reveal reveal-right reveal-delay-1">
               <div class="instructor-photo">
-                <img src="assets/Mariam adel.jpeg.jpg" alt="Portrait of Mariam Adel" />
+                <img src="assets/Mariam adel.png" alt="Portrait of Mariam Adel" />
               </div>
               <div class="instructor-body">
                 <h3>Mariam Adel</h3>
                 <div class="instructor-role">AI Workflow Specialist, Design Architect</div>
                 <p class="instructor-bio">
-                  Mariam Adel is an AI Systems and Workflow Specialist focused on developing AI-driven systems and design production workflows. She has professional experience as an AI Specialist at Emaar Misr and brings 3 years of hands-on expertise with ComfyUI, as well as local and closed-source generative AI tools. She combines practical industry experience with academic involvement, having previously served as a Teaching Assistant at Ain Shams University. Additionally, she has worked as a Project Design Coordinator at Diaa Consult.
+                  Mariam Adel is an AI Systems and Workflow Specialist focused on developing AI-driven systems and
+                  design production workflows. She has professional experience as an AI Specialist at Emaar Misr and
+                  brings 3 years of hands-on expertise with ComfyUI, as well as local and closed-source generative AI
+                  tools. She combines practical industry experience with academic involvement, having previously served
+                  as a Teaching Assistant at Ain Shams University. Additionally, she has worked as a Project Design
+                  Coordinator at Diaa Consult.
                 </p>
               </div>
             </article>
@@ -2954,7 +4112,8 @@
             </article>
             <article class="note-card reveal reveal-right reveal-delay-2">
               <h3>Course Note</h3>
-              <div class="body-copy">Topics and duration may be modified by the instructor based on participant knowledge and skill level.</div>
+              <div class="body-copy">Topics and duration may be modified by the instructor based on participant
+                knowledge and skill level.</div>
             </article>
           </div>
 
@@ -2976,17 +4135,17 @@
             <div class="session-grid">
               <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>01</strong></div>
-                <h3>AI Foundations</h3>
+                <h3>AI Foundations &amp; ComfyUI setup</h3>
                 <ul>
                   <li>AI terminology and useful websites</li>
                   <li>What is ComfyUI?</li>
+                  <li>Download and install ComfyUI</li>
                 </ul>
               </article>
               <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>02</strong></div>
-                <h3>Setup & Basic Workflows</h3>
+                <h3>Comfy interface &amp; Basic Workflows</h3>
                 <ul>
-                  <li>Download and install ComfyUI</li>
                   <li>Interface overview</li>
                   <li>Simple text-to-image workflow</li>
                   <li>Image-to-image workflow</li>
@@ -3011,8 +4170,18 @@
                 </ul>
                 <div class="task">Task: Train your own LoRA</div>
               </article>
-              <article class="session-card reveal reveal-delay-1">
+              <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>05</strong></div>
+                <h3>Inpainting &amp; Design Iteration</h3>
+                <ul>
+                  <li>Inpainting workflows</li>
+                  <li>Image editing models</li>
+                  <li>Differences between normal and edit-specific inpainting</li>
+                </ul>
+                <div class="task">Task: Update materials, context, people, objects, and atmosphere</div>
+              </article>
+              <article class="session-card reveal reveal-delay-1">
+                <div class="session-index"><span>Session</span><strong>06</strong></div>
                 <h3>Enhancement Pipeline</h3>
                 <ul>
                   <li>Segmentation and autodetection</li>
@@ -3020,16 +4189,6 @@
                   <li>Upscaling</li>
                 </ul>
                 <div class="task">Task: Execute a full image enhancement pipeline</div>
-              </article>
-              <article class="session-card reveal reveal-right">
-                <div class="session-index"><span>Session</span><strong>06</strong></div>
-                <h3>Inpainting & Design Iteration</h3>
-                <ul>
-                  <li>Inpainting workflows</li>
-                  <li>Image editing models</li>
-                  <li>Differences between normal and edit-specific inpainting</li>
-                </ul>
-                <div class="task">Task: Update materials, context, people, objects, and atmosphere</div>
               </article>
               <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>07</strong></div>
@@ -3064,7 +4223,7 @@
               </article>
               <article class="session-card reveal reveal-left">
                 <div class="session-index"><span>Session</span><strong>10</strong></div>
-                <h3>LLMs, MCP & Automation</h3>
+                <h3>LLMs, MCP &amp; Automation</h3>
                 <ul>
                   <li>Anything LLM</li>
                   <li>MCP</li>
@@ -3076,7 +4235,7 @@
               </article>
               <article class="session-card reveal reveal-delay-1">
                 <div class="session-index"><span>Session</span><strong>11</strong></div>
-                <h3>Vibe Coding, Websites & AI Agents</h3>
+                <h3>Vibe Coding, Websites &amp; AI Agents</h3>
                 <ul>
                   <li>Intro to vibe coding</li>
                   <li>Skills and AI agents</li>
@@ -3088,7 +4247,7 @@
               </article>
               <article class="session-card reveal reveal-right">
                 <div class="session-index"><span>Session</span><strong>12</strong></div>
-                <h3>Arch Viz & Interior AI</h3>
+                <h3>Arch Viz &amp; Interior AI</h3>
                 <ul>
                   <li>AI in architectural visualization techniques</li>
                   <li>AI in interior design techniques</li>
@@ -3108,54 +4267,562 @@
           <div class="section-header">
             <div>
               <div class="eyebrow">Showcase</div>
-              <h2>A dedicated space for future examples and course-made results.</h2>
+              <h2>Scroll through the outcomes this course is built to produce.</h2>
             </div>
-            <div class="section-copy">A curated gallery for future student work, cinematic renders, production tests, and before-and-after transformations from the studio.</div>
             <div class="section-meta">Showcase / 03</div>
           </div>
 
-          <div class="register-layout">
-            <article class="register-card register-preview reveal reveal-left">
-              <div class="mini-badge">Curated Gallery</div>
-              <div>
-                <h3>Future results will be presented like finished case studies.</h3>
-                <div class="register-note">
-                  The showcase is reserved for work that demonstrates the course standard: atmosphere studies, design iterations, motion outputs, textured 3D assets, and AI-assisted digital products.
-                </div>
-              </div>
-              <ul class="showcase-list">
-                <li>Before-and-after design transformations</li>
-                <li>Architectural image and video studies</li>
-                <li>3D experiments translated from 2D references</li>
-                <li>Course-built websites, tools, and creative systems</li>
-              </ul>
-            </article>
+          <div class="showcase-stage">
+            <div class="showcase-pin">
+              <div class="showcase-frame reveal reveal-left">
 
-            <article class="register-card register-panel reveal reveal-right reveal-delay-1">
-              <div>
-                <div class="mini-kicker">Planned collection</div>
-                <h3>What this gallery will include</h3>
-                <div class="body-copy">Each entry is intended to read like an exhibit panel rather than a random media dump, so visitors can quickly understand the quality and range of outcomes.</div>
-              </div>
-              <div class="exhibit-stack">
-                <div class="exhibit-card">
-                  <strong>Visual stories</strong>
-                  Render sets, material explorations, and spatial mood sequences.
+                <div class="showcase-command-layout">
+                  <nav class="showcase-nav" aria-label="Showcase capabilities">
+                    <a class="showcase-link active" href="#showcase-step-multi-angles"
+                      data-showcase-scene="multi-angles">Multi angles</a>
+                    <a class="showcase-link" href="#showcase-step-mood-board" data-showcase-scene="mood-board">Mood
+                      board</a>
+                    <a class="showcase-link" href="#showcase-step-space-perception"
+                      data-showcase-scene="space-perception">Space Perception</a>
+                    <a class="showcase-link" href="#showcase-step-add-people" data-showcase-scene="add-people">Add
+                      people</a>
+                    <a class="showcase-link" href="#showcase-step-3d-integration"
+                      data-showcase-scene="3d-integration">3d integration</a>
+                    <a class="showcase-link" href="#showcase-step-restore-details"
+                      data-showcase-scene="restore-details">Restore details</a>
+                    <a class="showcase-link" href="#showcase-step-refine-people"
+                      data-showcase-scene="refine-people">Refine people</a>
+                    <a class="showcase-link" href="#showcase-step-style-transfer"
+                      data-showcase-scene="style-transfer">Style transfer</a>
+                    <a class="showcase-link" href="#showcase-step-animation"
+                      data-showcase-scene="animation">Animation</a>
+                    <a class="showcase-link" href="#showcase-step-training-lora"
+                      data-showcase-scene="training-lora">Training Lora</a>
+                    <a class="showcase-link" href="#showcase-step-live-sketch" data-showcase-scene="live-sketch">Live
+                      sketch</a>
+                    <a class="showcase-link" href="#showcase-step-all-in-one-click"
+                      data-showcase-scene="all-in-one-click">All in one click</a>
+                    <a class="showcase-link" href="#showcase-step-vibe-coding" data-showcase-scene="vibe-coding">vibe
+                      coding</a>
+                  </nav>
+
+                  <div class="showcase-scenes">
+                    <article class="showcase-scene active" data-scene="multi-angles">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Multi angles</div>
+                            <h3>One scene, many camera decisions.</h3>
+                          </div>
+                          <div class="showcase-number">01</div>
+                        </div>
+                        <p class="body-copy">Temporary Unreal-style placeholder: one environment explored through hero,
+                          eye-level, overhead, and detail shots so the output reads like a deliberate sequence.</p>
+                        <ul class="detail-list">
+                          <li>Wide, mid, and close storytelling frames.</li>
+                          <li>Consistent atmosphere across all views.</li>
+                          <li>Ready for final render replacements later.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Camera set</span><span
+                            class="showcase-tag">Sequence</span><span class="showcase-tag">Placeholder</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Unreal-style preview</div><strong>Angle pack for one
+                              concept scene.</strong>
+                            <div>Replace with storyboard stills, render crops, or viewport captures.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: one project presented from four curated
+                          viewpoints.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="mood-board">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Mood board</div>
+                            <h3>Atmosphere before geometry.</h3>
+                          </div>
+                          <div class="showcase-number">02</div>
+                        </div>
+                        <p class="body-copy">A previsualization board for lighting, palette, texture, and emotional
+                          direction before the final scene gets locked.</p>
+                        <ul class="detail-list">
+                          <li>Reference logic tied to one visual outcome.</li>
+                          <li>Multiple moods from the same brief.</li>
+                          <li>Strong bridge from inspiration to production.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Look dev</span><span
+                            class="showcase-tag">Palette</span><span class="showcase-tag">Atmosphere</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Reference board</div><strong>Palette, materials,
+                              tone, and lighting notes.</strong>
+                            <div>Ideal for a collage of references and early style frames.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: one mood board directly connected to the
+                          final render set.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="space-perception">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Space Perception</div>
+                            <h3>Make scale and depth feel believable.</h3>
+                          </div>
+                          <div class="showcase-number">03</div>
+                        </div>
+                        <p class="body-copy">Show how camera height, lens feel, layering, and human-scale anchors
+                          transform flat outputs into convincing spaces.</p>
+                        <ul class="detail-list">
+                          <li>Before-and-after perception fixes.</li>
+                          <li>Lens, horizon, and parallax cues.</li>
+                          <li>Useful for architecture and interiors.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Depth</span><span
+                            class="showcase-tag">Lens feel</span><span class="showcase-tag">Scale</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Spatial study</div><strong>Foreground, midground,
+                              and perspective correction.</strong>
+                            <div>Swap in final scene comparisons when ready.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: a perception correction sequence from
+                          flat image to immersive space.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="add-people">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Add people</div>
+                            <h3>Inject life without breaking the scene.</h3>
+                          </div>
+                          <div class="showcase-number">04</div>
+                        </div>
+                        <p class="body-copy">Context figures added with believable scale, gesture, and lighting so the
+                          environment feels inhabited and readable.</p>
+                        <ul class="detail-list">
+                          <li>Occupancy and circulation cues.</li>
+                          <li>Stronger understanding of function and scale.</li>
+                          <li>Designed as communication, not decoration.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Human context</span><span
+                            class="showcase-tag">Scene life</span><span class="showcase-tag">Scale</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Population pass</div><strong>Empty composition
+                              turned into a socially readable environment.</strong>
+                            <div>Best future slot for before-and-after comparisons.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: empty render transformed by contextual
+                          population.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="3d-integration">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">3d integration</div>
+                            <h3>Blend generated imagery with structured 3D workflows.</h3>
+                          </div>
+                          <div class="showcase-number">05</div>
+                        </div>
+                        <p class="body-copy">A 3D base scene pushed into richer visual outcomes while preserving
+                          geometry, intent, and spatial control.</p>
+                        <ul class="detail-list">
+                          <li>Geometry, segmentation, and AI enhancement together.</li>
+                          <li>2D and 3D as one workflow.</li>
+                          <li>Applicable to architecture, products, and environments.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">2D + 3D</span><span
+                            class="showcase-tag">Bridge</span><span class="showcase-tag">Workflow</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Integration sample</div><strong>Simple mesh,
+                              stronger atmosphere, retained structure.</strong>
+                            <div>Use later for segmented views, texture passes, and finals.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: 3D base scene translated into a polished
+                          presentation frame.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="restore-details">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Restore details</div>
+                            <h3>Recover resolution, edges, and surface fidelity.</h3>
+                          </div>
+                          <div class="showcase-number">06</div>
+                        </div>
+                        <p class="body-copy">Enhancement workflows for facades, materials, products, and close-up
+                          details after generation and upscaling.</p>
+                        <ul class="detail-list">
+                          <li>Selective restoration instead of blunt sharpening.</li>
+                          <li>Recover texture, edges, and legibility.</li>
+                          <li>Quality-control pass before delivery.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Enhancement</span><span
+                            class="showcase-tag">Upscale</span><span class="showcase-tag">Detail</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Detail recovery</div><strong>Blurred source refined
+                              into a presentation-ready image.</strong>
+                            <div>Ideal future placement for zoomed comparison crops.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: crops that prove restored material and
+                          edge quality.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="refine-people">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Refine people</div>
+                            <h3>Fix faces, hands, posture, and integration.</h3>
+                          </div>
+                          <div class="showcase-number">07</div>
+                        </div>
+                        <p class="body-copy">Cleanup workflows for AI-generated characters so they hold up at closer
+                          viewing and feel naturally embedded in the final scene.</p>
+                        <ul class="detail-list">
+                          <li>Anatomy and gesture correction.</li>
+                          <li>Realism without losing mood.</li>
+                          <li>Useful for hero stills and portfolio frames.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Human polish</span><span
+                            class="showcase-tag">Cleanup</span><span class="showcase-tag">Post pass</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Refinement panel</div><strong>Close-range cleanup
+                              for faces, hands, and figure coherence.</strong>
+                            <div>Best future fit: side-by-side evidence of refinement quality.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: portrait or scene crops showing
+                          refinement stages.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="style-transfer">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Style transfer</div>
+                            <h3>Hold the structure, shift the visual language.</h3>
+                          </div>
+                          <div class="showcase-number">08</div>
+                        </div>
+                        <p class="body-copy">One brief interpreted through multiple aesthetics while the underlying
+                          composition stays coherent and recognizable.</p>
+                        <ul class="detail-list">
+                          <li>Consistent structure across several looks.</li>
+                          <li>Strategic variation, not random filtering.</li>
+                          <li>Ready for later style comparison boards.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Look shift</span><span
+                            class="showcase-tag">Variants</span><span class="showcase-tag">Reference style</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Style matrix</div><strong>One composition rendered
+                              through multiple visual identities.</strong>
+                            <div>Use later for controlled mood and style triptychs.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: one structure shown across several style
+                          directions.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="animation">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Animation</div>
+                            <h3>Turn still concepts into motion stories.</h3>
+                          </div>
+                          <div class="showcase-number">09</div>
+                        </div>
+                        <p class="body-copy">Camera moves, parallax motion, and AI video sequences that feel cinematic
+                          enough for presentations and launch campaigns.</p>
+                        <ul class="detail-list">
+                          <li>Still-to-motion workflow.</li>
+                          <li>Atmosphere, timing, and camera path as design tools.</li>
+                          <li>Ready for embedded video later.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Motion</span><span
+                            class="showcase-tag">Video pipeline</span><span class="showcase-tag">Cinematic</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Animation preview</div><strong>Poster frame for a
+                              generated motion sequence.</strong>
+                            <div>Later replace with a real clip or image sequence.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: one hero frame plus a short motion
+                          sample.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="training-lora">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Training Lora</div>
+                            <h3>Train a visual behavior, not just a single image.</h3>
+                          </div>
+                          <div class="showcase-number">10</div>
+                        </div>
+                        <p class="body-copy">Custom LoRA training presented as a reusable system for repeating a style,
+                          identity, material logic, or project-specific direction.</p>
+                        <ul class="detail-list">
+                          <li>Dataset thinking and training intent.</li>
+                          <li>Repeated consistency across outputs.</li>
+                          <li>Ready for charts and training notes later.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Custom model</span><span
+                            class="showcase-tag">Consistency</span><span class="showcase-tag">Reusable style</span>
+                        </div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">LoRA training story</div><strong>Dataset in,
+                              controlled visual signature out.</strong>
+                            <div>Use later for training samples and consistency checks.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: training inputs paired with output
+                          consistency.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="live-sketch">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">Live sketch</div>
+                            <h3>Move from rough lines to developed imagery fast.</h3>
+                          </div>
+                          <div class="showcase-number">11</div>
+                        </div>
+                        <p class="body-copy">Sketch-to-image workflows where hand-drawn intent survives the jump into
+                          rendered atmosphere, materials, and composition.</p>
+                        <ul class="detail-list">
+                          <li>Fast ideation without losing authorship.</li>
+                          <li>AI as amplification of the designer’s linework.</li>
+                          <li>Good fit for live workshop moments.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Sketch to image</span><span
+                            class="showcase-tag">Fast iteration</span><span class="showcase-tag">Authorship</span></div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Live ideation</div><strong>Concept sketch expanded
+                              into a cinematic design frame.</strong>
+                            <div>Best future use: rough sketch on one side, refined output on the other.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: a live sketch progression from linework
+                          to polished render.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="all-in-one-click">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">All in one click</div>
+                            <h3>Bundle the workflow into a single repeatable action.</h3>
+                          </div>
+                          <div class="showcase-number">12</div>
+                        </div>
+                        <p class="body-copy">A packaged system where setup, prompting, enhancement, and export are
+                          orchestrated as one repeatable production flow.</p>
+                        <ul class="detail-list">
+                          <li>Complex chains simplified for teams and studios.</li>
+                          <li>Operational rather than experimental.</li>
+                          <li>Ready for workflow diagrams or automation screenshots.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Automation</span><span
+                            class="showcase-tag">Systemized</span><span class="showcase-tag">Production ready</span>
+                        </div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Workflow package</div><strong>One action
+                              orchestrating a full visual production pass.</strong>
+                            <div>Later replace with a node graph, UI screenshot, or export sheet.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: compressed workflow overview plus
+                          resulting outputs.</div>
+                      </div>
+                    </article>
+
+                    <article class="showcase-scene" data-scene="vibe-coding">
+                      <div class="showcase-copy-block">
+                        <div class="showcase-scene-head">
+                          <div>
+                            <div class="showcase-kicker">vibe coding</div>
+                            <h3>Translate the visual thinking into a working product.</h3>
+                          </div>
+                          <div class="showcase-number">13</div>
+                        </div>
+                        <p class="body-copy">The final slot extends beyond images into websites, tools, and product
+                          concepts built with AI coding flows and strong visual direction.</p>
+                        <ul class="detail-list">
+                          <li>Connect visual prompts to real implementation.</li>
+                          <li>AI-assisted product making as part of the same stack.</li>
+                          <li>Ideal home for landing pages, tools, and microsites.</li>
+                        </ul>
+                        <div class="showcase-tags"><span class="showcase-tag">Web output</span><span
+                            class="showcase-tag">AI coding</span><span class="showcase-tag">Product thinking</span>
+                        </div>
+                      </div>
+                      <div class="showcase-visual-column">
+                        <div class="showcase-placeholder">
+                          <div class="showcase-placeholder-lines"><span></span><span></span><span></span></div>
+                          <div class="showcase-placeholder-copy">
+                            <div class="showcase-placeholder-label">Build preview</div><strong>From concept language to
+                              a shipped interface direction.</strong>
+                            <div>Later place screenshots, product flows, or web demos built during the course.</div>
+                          </div>
+                        </div>
+                        <div class="showcase-caption">Suggested future content: a live product or website case study
+                          built from the course workflow.</div>
+                      </div>
+                    </article>
+                  </div>
                 </div>
-                <div class="exhibit-card">
-                  <strong>Workflow highlights</strong>
-                  Modular ComfyUI setups, enhancement chains, and automation systems.
-                </div>
-                <div class="exhibit-card">
-                  <strong>Cross-medium output</strong>
-                  Motion studies, 3D assets, and AI-assisted website experiments.
+              </div>
+            </div>
+
+            <div class="showcase-steps" aria-label="Scroll steps for showcase narrative">
+              <div id="showcase-step-multi-angles" class="showcase-step active" data-showcase-scene="multi-angles">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">01</div>
+                  <div class="showcase-step-label">Multi angles</div>
                 </div>
               </div>
-              <div class="button-row">
-                <button class="button primary" type="button">Showcase In Progress</button>
-                <button class="button" type="button">Curate Examples</button>
+              <div id="showcase-step-mood-board" class="showcase-step" data-showcase-scene="mood-board">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">02</div>
+                  <div class="showcase-step-label">Mood board</div>
+                </div>
               </div>
-            </article>
+              <div id="showcase-step-space-perception" class="showcase-step" data-showcase-scene="space-perception">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">03</div>
+                  <div class="showcase-step-label">Space Perception</div>
+                </div>
+              </div>
+              <div id="showcase-step-add-people" class="showcase-step" data-showcase-scene="add-people">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">04</div>
+                  <div class="showcase-step-label">Add people</div>
+                </div>
+              </div>
+              <div id="showcase-step-3d-integration" class="showcase-step" data-showcase-scene="3d-integration">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">05</div>
+                  <div class="showcase-step-label">3d integration</div>
+                </div>
+              </div>
+              <div id="showcase-step-restore-details" class="showcase-step" data-showcase-scene="restore-details">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">06</div>
+                  <div class="showcase-step-label">Restore details</div>
+                </div>
+              </div>
+              <div id="showcase-step-refine-people" class="showcase-step" data-showcase-scene="refine-people">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">07</div>
+                  <div class="showcase-step-label">Refine people</div>
+                </div>
+              </div>
+              <div id="showcase-step-style-transfer" class="showcase-step" data-showcase-scene="style-transfer">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">08</div>
+                  <div class="showcase-step-label">Style transfer</div>
+                </div>
+              </div>
+              <div id="showcase-step-animation" class="showcase-step" data-showcase-scene="animation">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">09</div>
+                  <div class="showcase-step-label">Animation</div>
+                </div>
+              </div>
+              <div id="showcase-step-training-lora" class="showcase-step" data-showcase-scene="training-lora">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">10</div>
+                  <div class="showcase-step-label">Training Lora</div>
+                </div>
+              </div>
+              <div id="showcase-step-live-sketch" class="showcase-step" data-showcase-scene="live-sketch">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">11</div>
+                  <div class="showcase-step-label">Live sketch</div>
+                </div>
+              </div>
+              <div id="showcase-step-all-in-one-click" class="showcase-step" data-showcase-scene="all-in-one-click">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">12</div>
+                  <div class="showcase-step-label">All in one click</div>
+                </div>
+              </div>
+              <div id="showcase-step-vibe-coding" class="showcase-step" data-showcase-scene="vibe-coding">
+                <div class="showcase-step-inner">
+                  <div class="showcase-step-index">13</div>
+                  <div class="showcase-step-label">vibe coding</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="panel-credit">Powered by MeeM Studio</div>
@@ -3167,69 +4834,82 @@
           <div class="section-header">
             <div>
               <div class="eyebrow">Enroll</div>
-              <h2>Enroll and secure your seat.</h2>
+              <h2>Reserve your seat.</h2>
             </div>
             <div class="section-meta">Register / 04</div>
           </div>
 
-          <div class="register-layout">
-            <article class="register-card register-preview reveal reveal-left">
+          <div class="register-layout register-layout--enroll">
+            <article class="register-card register-preview register-spotlight reveal reveal-left">
               <div class="mini-badge">Early Bird</div>
               <div class="pricing-block">
                 <div class="pricing-heading">
-                  <h3>Reserve a place in the first cohort.</h3>
+                  <h3>Take your seat before the first 10 spots are gone.</h3>
                   <div class="pricing-meta">
                     <div class="pricing-pill">15% Off</div>
                     <div class="pricing-pill">First 10 Seats</div>
                   </div>
                 </div>
-                <div class="pricing-stack">
-                  <div class="price-current reveal-scale">6,799 EGP</div>
-                  <div class="price-original">7,999 EGP</div>
+                <div class="enroll-summary reveal reveal-delay-1">
+                  Join a hands-on cohort built for designers, architects, visualizers, and artists who want guided
+                  practice, repeatable systems, and outcomes worth shipping.
                 </div>
-                <div class="register-note reveal reveal-delay-1">
-                  The early enrollment rate is reserved for the first ten participants and is designed for serious creatives who want guided practice, repeatable systems, and portfolio-worthy outcomes.
+                <div class="enroll-facts-grid reveal reveal-delay-2">
+                  <div class="enroll-fact">
+                    <span class="enroll-fact-label">Round Date</span>
+                    <span class="enroll-fact-value">May 10, 2026</span>
+                  </div>
+                  <div class="enroll-fact">
+                    <span class="enroll-fact-label">Duration</span>
+                    <span class="enroll-fact-value">12 weeks</span>
+                  </div>
+                  <div class="enroll-fact">
+                    <span class="enroll-fact-label">Guided Time</span>
+                    <span class="enroll-fact-value">36 guided hours</span>
+                  </div>
+                  <div class="enroll-fact">
+                    <span class="enroll-fact-label">Course Language</span>
+                    <span class="enroll-fact-value">Arabic</span>
+                  </div>
                 </div>
-                <ul class="pricing-includes">
-                  <li class="reveal reveal-left">12 guided sessions across foundations, workflows, prompting, and production.</li>
-                  <li class="reveal reveal-delay-1">Hands-on coverage of ComfyUI, ControlNet, LoRA workflows, inpainting, and enhancement pipelines.</li>
-                  <li class="reveal reveal-delay-2">Practical learning path focused on real creative and architectural AI outputs.</li>
-                </ul>
-                <div class="pricing-footnote reveal reveal-delay-3">Standard pricing applies after the first 10 seats are filled.</div>
+                <div class="enroll-highlight reveal reveal-delay-3">
+                  <span>Practical workflow training</span>
+                  <span>Real-world project outcomes</span>
+                  <span>Serious cohort only</span>
+                </div>
               </div>
             </article>
 
-            <article class="register-card register-panel reveal reveal-right reveal-delay-1">
-              <div>
-                <div class="mini-kicker">Enrollment notes</div>
-                <h3>Who this cohort is built for</h3>
-                <div class="body-copy">This format suits designers, architects, visualization specialists, artists, and technically curious creatives who want practical command over the tools rather than surface-level prompting.</div>
-              </div>
-              <div class="enroll-facts">
-                <div class="fact-row">
-                  <strong>Schedule</strong>
-                  12 weeks, one day per week, three hours per session.
+            <article class="register-card enroll-sidebar reveal reveal-right reveal-delay-1">
+              <div class="enroll-price-card">
+                <div class="enroll-price-head">
+                  <div>
+                    <div class="mini-kicker">Seat Reservation</div>
+                    <h3>Secure the early cohort rate.</h3>
+                  </div>
+                  <p>Standard pricing returns after the first 10 seats are filled.</p>
                 </div>
-                <div class="fact-row">
-                  <strong>Readiness</strong>
-                  Best suited for learners comfortable with software interfaces and file-based workflows.
+                <div class="pricing-stack enroll-price-stack">
+                  <div class="price-current reveal-scale">6,799 EGP</div>
+                  <div class="price-original">7,999 EGP</div>
                 </div>
-                <div class="fact-row">
-                  <strong>Outcome</strong>
-                  Leave with reusable workflows, a stronger creative process, and a final project that connects concept to delivery.
+                <ul class="pricing-includes">
+                  <li>12 guided sessions across foundations, workflows, prompting, and production.</li>
+                  <li>Hands-on coverage of ComfyUI, ControlNet, LoRA workflows, inpainting, and enhancement pipelines.
+                  </li>
+                  <li>Practical learning path focused on real creative and architectural AI outputs.</li>
+                </ul>
+                <div class="pricing-footnote">Early enrollment pricing is reserved for the first ten participants.</div>
+              </div>
+              <div class="enroll-cta-card">
+                <div class="enroll-cta-copy">Complete a short guided application and we will contact you on email or
+                  WhatsApp to confirm the next step.</div>
+                <div class="button-row">
+                  <button class="button primary" type="button" data-open-enroll-modal>Reserve Your Seat</button>
+                  <a class="button secondary-link" href="https://wa.me/201152700250" target="_blank"
+                    rel="noreferrer">Request Details</a>
                 </div>
-              </div>
-              <ul class="detail-list">
-                <li>Priority enrollment is limited to preserve feedback quality.</li>
-                <li>Topics can be calibrated to the group skill level.</li>
-                <li>Suitable for individual creatives and studio teams.</li>
-              </ul>
-              <div class="contact-note">
-                Use this panel as the direct invitation point for enrollment, waitlist management, or private inquiries about fit, availability, and payment terms.
-              </div>
-              <div class="button-row">
-                <button class="button primary" type="button">Reserve Your Seat</button>
-                <button class="button" type="button">Request Details</button>
+                <div class="enroll-whatsapp-note">Questions before applying? Message us directly on WhatsApp.</div>
               </div>
             </article>
           </div>
@@ -3238,6 +4918,102 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <div class="enroll-modal" id="enroll-modal" hidden>
+    <div class="enroll-modal-backdrop" data-close-enroll-modal></div>
+    <div class="enroll-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="enroll-modal-title">
+      <button class="enroll-modal-close" type="button" aria-label="Close application"
+        data-close-enroll-modal>&times;</button>
+      <form class="enroll-modal-shell" id="enroll-form" novalidate>
+        <div>
+          <div class="enroll-progress-meta">
+            <div id="enroll-progress-step">Step 1 of 6</div>
+            <div id="enroll-progress-percent">17%</div>
+          </div>
+          <div class="enroll-progress-track" aria-hidden="true">
+            <div class="enroll-progress-bar" id="enroll-progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="enroll-modal-step active" data-step="0" data-field="fullName">
+          <div class="enroll-modal-step-copy">
+            <h3 id="enroll-modal-title">What's your full name?</h3>
+            <p>We'd love to know what to call you.</p>
+          </div>
+          <input class="enroll-form-control" type="text" name="fullName" placeholder="Enter your full name"
+            autocomplete="name" />
+          <div class="step-hint">Press <kbd>Enter</kbd> to continue</div>
+        </div>
+
+        <div class="enroll-modal-step" data-step="1" data-field="roleTitle">
+          <div class="enroll-modal-step-copy">
+            <h3>What's your current role or title?</h3>
+            <p>Help us understand your professional background.</p>
+          </div>
+          <input class="enroll-form-control" type="text" name="roleTitle"
+            placeholder="e.g., Designer, Architect, Freelancer" autocomplete="organization-title" />
+          <div class="step-hint">Press <kbd>Enter</kbd> to continue</div>
+        </div>
+
+        <div class="enroll-modal-step" data-step="2" data-field="email">
+          <div class="enroll-modal-step-copy">
+            <h3>What's your email address?</h3>
+            <p>We'll use this to send you course updates and next steps.</p>
+          </div>
+          <input class="enroll-form-control" type="email" name="email" placeholder="name@example.com"
+            autocomplete="email" inputmode="email" />
+          <div class="step-hint">Press <kbd>Enter</kbd> to continue</div>
+        </div>
+
+        <div class="enroll-modal-step" data-step="3" data-field="phoneWhatsApp">
+          <div class="enroll-modal-step-copy">
+            <h3>What's your phone or WhatsApp number?</h3>
+            <p>We'll use it only if we need to confirm your seat quickly.</p>
+          </div>
+          <input class="enroll-form-control" type="tel" name="phoneWhatsApp" placeholder="e.g., 01152700250"
+            autocomplete="tel" inputmode="tel" />
+          <div class="step-hint">Press <kbd>Enter</kbd> to continue</div>
+        </div>
+
+        <div class="enroll-modal-step" data-step="4" data-field="learningGoals">
+          <div class="enroll-modal-step-copy">
+            <h3>What do you hope to learn from this course?</h3>
+            <p>Tell us about the skills, workflows, or projects you want to build.</p>
+          </div>
+          <textarea class="enroll-form-control" name="learningGoals"
+            placeholder="What specific skills or projects are you looking to develop?"></textarea>
+          <div class="step-hint">Use a few clear sentences so we can understand your goals.</div>
+        </div>
+
+        <div class="enroll-modal-step" data-step="5" data-field="heardAboutUs">
+          <div class="enroll-modal-step-copy">
+            <h3>How did you hear about us?</h3>
+            <p>Help us understand what brought you here.</p>
+          </div>
+          <input class="enroll-form-control" type="text" name="heardAboutUs"
+            placeholder="Social media, referral, website, etc." autocomplete="off" />
+          <div class="step-hint">Press <kbd>Enter</kbd> to review and submit</div>
+        </div>
+
+        <div class="enroll-form-error" id="enroll-form-error" aria-live="polite"></div>
+
+        <div class="enroll-modal-actions">
+          <button class="button modal-ghost" type="button" id="enroll-prev-button">Previous</button>
+          <div class="enroll-modal-actions-end">
+            <div class="enroll-submit-note" id="enroll-submit-note"></div>
+            <button class="button modal-primary" type="button" id="enroll-next-button">Continue</button>
+          </div>
+        </div>
+
+        <div class="enroll-modal-success" id="enroll-modal-success" aria-live="polite">
+          <div class="mini-kicker">Seat Request Received</div>
+          <h3>You're on our radar.</h3>
+          <p>Your seat request has been received. We'll contact you soon on email or WhatsApp.</p>
+          <button class="button modal-primary" type="button" data-close-enroll-modal>Close</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -3251,33 +5027,33 @@
       const cursorRing = document.querySelector('.cursor-ring');
 
       if (cursor && cursorRing) {
-      let mouseX = 0, mouseY = 0;
-      let ringX = 0, ringY = 0;
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
 
-      // Smooth cursor animation loop
-      function animateCursor() {
-        // Smooth follow with lerp
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top = ringY + 'px';
-        
-        requestAnimationFrame(animateCursor);
-      }
+        // Smooth cursor animation loop
+        function animateCursor() {
+          // Smooth follow with lerp
+          ringX += (mouseX - ringX) * 0.15;
+          ringY += (mouseY - ringY) * 0.15;
 
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
+          cursor.style.left = mouseX + 'px';
+          cursor.style.top = mouseY + 'px';
+          cursorRing.style.left = ringX + 'px';
+          cursorRing.style.top = ringY + 'px';
+
+          requestAnimationFrame(animateCursor);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
 
         // Start animation
         animateCursor();
 
         // Cursor interaction states
-        const interactiveElements = document.querySelectorAll('a, button, .tab, .session-card, .content-card, .note-card, .stat-card, .register-card, .floating-card, .scroll-button');
+        const interactiveElements = document.querySelectorAll('a, button, .tab, .session-card, .content-card, .note-card, .stat-card, .register-card, .floating-card, .scroll-button, .showcase-link, .showcase-step');
 
         interactiveElements.forEach(el => {
           el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
@@ -3321,6 +5097,8 @@
         return;
       }
 
+      // Scroll lock removed — showcase page scrolls normally like other tabs
+
       tabs.forEach((tab) => {
         const isActive = tab.dataset.panel === panelName;
         tab.classList.toggle('active', isActive);
@@ -3345,13 +5123,413 @@
       tab.addEventListener('click', () => activatePanel(tab.dataset.panel));
     });
 
+    const showcaseLinks = Array.from(document.querySelectorAll('.showcase-link[data-showcase-scene]'));
+    const showcaseScenes = Array.from(document.querySelectorAll('.showcase-scene'));
+    const showcaseSteps = Array.from(document.querySelectorAll('.showcase-step'));
+    const showcaseNav = document.querySelector('.showcase-nav');
+    const showcaseStepsContainer = document.querySelector('.showcase-steps');
+    const showcaseStepByScene = new Map(showcaseSteps.map((step) => [step.dataset.showcaseScene, step]));
+    const showcaseLinkByScene = new Map(showcaseLinks.map((link) => [link.dataset.showcaseScene, link]));
+    let activeShowcaseScene = showcaseLinks[0] ? showcaseLinks[0].dataset.showcaseScene : null;
+    let showcaseWheelLocked = false;
+
+    function updateShowcaseRoller(sceneName) {
+      const activeIndex = showcaseLinks.findIndex((link) => link.dataset.showcaseScene === sceneName);
+      if (activeIndex < 0) {
+        return;
+      }
+
+      showcaseLinks.forEach((link, index) => {
+        const distance = index - activeIndex;
+        const distanceAbs = Math.abs(distance);
+        const limitedDistance = Math.min(distanceAbs, 6);
+        const translateX = index === activeIndex ? 0 : Math.min(8 + limitedDistance * 5, 28);
+        const scale = index === activeIndex ? 1.06 : Math.max(0.82, 1 - limitedDistance * 0.05);
+        const opacity = index === activeIndex ? 1 : Math.max(0.06, 0.5 - limitedDistance * 0.12);
+        const blur = index === activeIndex ? 0 : Math.min(0.7 + limitedDistance * 0.65, 4.5);
+
+        link.style.setProperty('--roller-x', `${translateX}px`);
+        link.style.setProperty('--roller-scale', String(scale));
+        link.style.setProperty('--roller-opacity', String(opacity));
+        link.style.setProperty('--roller-blur', `${blur}px`);
+      });
+    }
+
+    function setActiveShowcaseScene(sceneName) {
+      activeShowcaseScene = sceneName;
+
+      showcaseLinks.forEach((link) => {
+        link.classList.toggle('active', link.dataset.showcaseScene === sceneName);
+      });
+
+      showcaseScenes.forEach((scene) => {
+        scene.classList.toggle('active', scene.dataset.scene === sceneName);
+      });
+
+      showcaseSteps.forEach((step) => {
+        step.classList.toggle('active', step.dataset.showcaseScene === sceneName);
+      });
+
+      const activeStep = showcaseStepByScene.get(sceneName);
+      const activeLink = showcaseLinkByScene.get(sceneName);
+      const activeShowcasePanel = document.getElementById('panel-showcase');
+      if (activeStep && activeShowcasePanel && activeShowcasePanel.classList.contains('active')) {
+        history.replaceState(null, '', `#${activeStep.id}`);
+      }
+
+      updateShowcaseRoller(sceneName);
+
+      if (activeLink && showcaseNav) {
+        const nextTop = activeLink.offsetTop - ((showcaseNav.clientHeight - activeLink.offsetHeight) / 2);
+        showcaseNav.scrollTo({ top: Math.max(0, nextTop), behavior: 'auto' });
+      }
+    }
+
+    function scrollToShowcaseStep(stepId, behavior = 'auto') {
+      const targetStep = document.getElementById(stepId);
+      if (!targetStep || !showcaseStepsContainer) {
+        return;
+      }
+
+      showcaseStepsContainer.scrollTo({ top: targetStep.offsetTop, behavior });
+    }
+
+    function activateShowcaseScene(sceneName, behavior = 'auto') {
+      if (!sceneName) {
+        return;
+      }
+
+      const targetStep = showcaseStepByScene.get(sceneName);
+      setActiveShowcaseScene(sceneName);
+
+      if (targetStep) {
+        scrollToShowcaseStep(targetStep.id, behavior);
+      }
+    }
+
+    function moveShowcaseScene(delta) {
+      if (!activeShowcaseScene || !showcaseLinks.length) {
+        return;
+      }
+
+      const currentIndex = showcaseLinks.findIndex((link) => link.dataset.showcaseScene === activeShowcaseScene);
+      if (currentIndex < 0) {
+        return;
+      }
+
+      const nextIndex = Math.max(0, Math.min(showcaseLinks.length - 1, currentIndex + delta));
+      if (nextIndex === currentIndex) {
+        return;
+      }
+
+      activateShowcaseScene(showcaseLinks[nextIndex].dataset.showcaseScene);
+    }
+
+    if (showcaseLinks.length) {
+      activateShowcaseScene(showcaseLinks[0].dataset.showcaseScene);
+    }
+
+    if (showcaseNav) {
+      showcaseNav.addEventListener('wheel', (event) => {
+        if (Math.abs(event.deltaY) < 6) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (showcaseWheelLocked) {
+          return;
+        }
+
+        showcaseWheelLocked = true;
+        moveShowcaseScene(event.deltaY > 0 ? 1 : -1);
+
+        window.setTimeout(() => {
+          showcaseWheelLocked = false;
+        }, 240);
+      }, { passive: false });
+    }
+
+    showcaseLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        activatePanel('showcase');
+        activateShowcaseScene(link.dataset.showcaseScene);
+      });
+    });
+
     document.querySelectorAll('[data-panel-target]').forEach((element) => {
       element.addEventListener('click', () => activatePanel(element.dataset.panelTarget));
     });
 
+    const enrollEndpoint = 'https://script.google.com/macros/s/AKfycbyWsbf9XTi9cB9Q91E_UmOxX5URT9Vz5RZI0s23n5fHWqKKu-28n1G4FNsq7ijUhhwD/exec';
+    const enrollModal = document.getElementById('enroll-modal');
+    const enrollForm = document.getElementById('enroll-form');
+    const enrollSteps = Array.from(document.querySelectorAll('.enroll-modal-step'));
+    const enrollSuccess = document.getElementById('enroll-modal-success');
+    const enrollError = document.getElementById('enroll-form-error');
+    const enrollSubmitNote = document.getElementById('enroll-submit-note');
+    const enrollProgressStep = document.getElementById('enroll-progress-step');
+    const enrollProgressPercent = document.getElementById('enroll-progress-percent');
+    const enrollProgressBar = document.getElementById('enroll-progress-bar');
+    const enrollPrevButton = document.getElementById('enroll-prev-button');
+    const enrollNextButton = document.getElementById('enroll-next-button');
+    const enrollFormControls = Array.from(document.querySelectorAll('.enroll-form-control'));
+    const modalActionElements = [enrollPrevButton, enrollNextButton].filter(Boolean);
+    const totalEnrollSteps = enrollSteps.length;
+    let currentEnrollStep = 0;
+    let isSubmittingEnrollForm = false;
+
+    function setEnrollStatus(message = '') {
+      if (enrollSubmitNote) {
+        enrollSubmitNote.textContent = message;
+      }
+    }
+
+    function setEnrollError(message = '') {
+      if (enrollError) {
+        enrollError.textContent = message;
+      }
+    }
+
+    function getEnrollField(stepIndex = currentEnrollStep) {
+      const step = enrollSteps[stepIndex];
+      const fieldName = step ? step.dataset.field : null;
+      return fieldName ? enrollForm.elements[fieldName] : null;
+    }
+
+    function validateEnrollField(field) {
+      if (!field) {
+        return '';
+      }
+
+      const value = field.value.trim();
+      if (!value) {
+        return 'Please complete this step before continuing.';
+      }
+
+      if (field.name === 'email') {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) {
+          return 'Please enter a valid email address.';
+        }
+      }
+
+      if (field.name === 'phoneWhatsApp') {
+        const digits = value.replace(/\D/g, '');
+        if (digits.length < 10) {
+          return 'Please enter a valid phone or WhatsApp number.';
+        }
+      }
+
+      return '';
+    }
+
+    function focusEnrollField(stepIndex = currentEnrollStep) {
+      const field = getEnrollField(stepIndex);
+      if (field) {
+        window.requestAnimationFrame(() => field.focus());
+      }
+    }
+
+    function updateEnrollModalStep() {
+      enrollSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === currentEnrollStep);
+      });
+
+      const progress = Math.round(((currentEnrollStep + 1) / totalEnrollSteps) * 100);
+      if (enrollProgressStep) {
+        enrollProgressStep.textContent = `Step ${currentEnrollStep + 1} of ${totalEnrollSteps}`;
+      }
+      if (enrollProgressPercent) {
+        enrollProgressPercent.textContent = `${progress}%`;
+      }
+      if (enrollProgressBar) {
+        enrollProgressBar.style.width = `${progress}%`;
+      }
+
+      if (enrollPrevButton) {
+        enrollPrevButton.disabled = currentEnrollStep === 0 || isSubmittingEnrollForm;
+      }
+
+      if (enrollNextButton) {
+        enrollNextButton.textContent = currentEnrollStep === totalEnrollSteps - 1 ? 'Submit Request' : 'Continue';
+        enrollNextButton.disabled = isSubmittingEnrollForm;
+      }
+
+      setEnrollError('');
+      setEnrollStatus('');
+      focusEnrollField();
+    }
+
+    function resetEnrollModal() {
+      currentEnrollStep = 0;
+      isSubmittingEnrollForm = false;
+      enrollForm.reset();
+      enrollSteps.forEach((step) => step.hidden = false);
+      modalActionElements.forEach((element) => { element.hidden = false; });
+      if (enrollSuccess) {
+        enrollSuccess.classList.remove('active');
+      }
+      updateEnrollModalStep();
+    }
+
+    function openEnrollModal() {
+      if (!enrollModal) {
+        return;
+      }
+
+      resetEnrollModal();
+      enrollModal.hidden = false;
+      document.body.classList.add('modal-open');
+    }
+
+    function closeEnrollModal() {
+      if (!enrollModal) {
+        return;
+      }
+
+      enrollModal.hidden = true;
+      document.body.classList.remove('modal-open');
+      setEnrollError('');
+      setEnrollStatus('');
+    }
+
+    function showEnrollSuccess() {
+      enrollSteps.forEach((step) => step.hidden = true);
+      modalActionElements.forEach((element) => { element.hidden = true; });
+      setEnrollError('');
+      setEnrollStatus('');
+      if (enrollSuccess) {
+        enrollSuccess.classList.add('active');
+      }
+    }
+
+    async function submitEnrollForm() {
+      if (isSubmittingEnrollForm) {
+        return;
+      }
+
+      const payload = {
+        fullName: enrollForm.elements.fullName.value.trim(),
+        roleTitle: enrollForm.elements.roleTitle.value.trim(),
+        email: enrollForm.elements.email.value.trim(),
+        phoneWhatsApp: enrollForm.elements.phoneWhatsApp.value.trim(),
+        learningGoals: enrollForm.elements.learningGoals.value.trim(),
+        heardAboutUs: enrollForm.elements.heardAboutUs.value.trim(),
+        cohort: 'May 10',
+        sourcePage: 'MeeM Academy Enroll'
+      };
+
+      isSubmittingEnrollForm = true;
+      updateEnrollModalStep();
+      setEnrollStatus('Submitting your seat request...');
+
+      try {
+        await fetch(enrollEndpoint, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        showEnrollSuccess();
+      } catch (error) {
+        setEnrollError('We could not submit your request right now. Please try again in a moment.');
+      } finally {
+        isSubmittingEnrollForm = false;
+        if (!enrollSuccess || !enrollSuccess.classList.contains('active')) {
+          updateEnrollModalStep();
+          setEnrollStatus('');
+        }
+      }
+    }
+
+    function goToNextEnrollStep() {
+      const field = getEnrollField();
+      const validationMessage = validateEnrollField(field);
+
+      if (validationMessage) {
+        setEnrollError(validationMessage);
+        focusEnrollField();
+        return;
+      }
+
+      if (currentEnrollStep === totalEnrollSteps - 1) {
+        submitEnrollForm();
+        return;
+      }
+
+      currentEnrollStep += 1;
+      updateEnrollModalStep();
+    }
+
+    function goToPreviousEnrollStep() {
+      if (currentEnrollStep === 0 || isSubmittingEnrollForm) {
+        return;
+      }
+
+      currentEnrollStep -= 1;
+      updateEnrollModalStep();
+    }
+
+    document.querySelectorAll('[data-open-enroll-modal]').forEach((button) => {
+      button.addEventListener('click', openEnrollModal);
+    });
+
+    document.querySelectorAll('[data-close-enroll-modal]').forEach((button) => {
+      button.addEventListener('click', closeEnrollModal);
+    });
+
+    if (enrollPrevButton) {
+      enrollPrevButton.addEventListener('click', goToPreviousEnrollStep);
+    }
+
+    if (enrollNextButton) {
+      enrollNextButton.addEventListener('click', goToNextEnrollStep);
+    }
+
+    enrollFormControls.forEach((field) => {
+      field.addEventListener('input', () => {
+        if (field === getEnrollField()) {
+          setEnrollError('');
+        }
+      });
+
+      if (field.tagName !== 'TEXTAREA') {
+        field.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            goToNextEnrollStep();
+          }
+        });
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && enrollModal && !enrollModal.hidden) {
+        closeEnrollModal();
+      }
+    });
+
+    updateEnrollModalStep();
+
     const defaultTab = document.querySelector('.tab.active');
     if (defaultTab) {
       activatePanel(defaultTab.dataset.panel);
+    }
+
+    const activeTab = document.querySelector('.tab.active');
+    if (activeTab) {
+      document.body.classList.toggle('showcase-lock', activeTab.dataset.panel === 'showcase');
+    }
+
+    const hashTarget = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
+    if (hashTarget && hashTarget.classList.contains('showcase-step')) {
+      activatePanel('showcase');
+      window.requestAnimationFrame(() => activateShowcaseScene(hashTarget.dataset.showcaseScene));
     }
 
     document.getElementById('scroll-up').addEventListener('click', () => {
@@ -3363,4 +5541,5 @@
     });
   </script>
 </body>
+
 </html>
